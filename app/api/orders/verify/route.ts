@@ -46,10 +46,12 @@ export async function POST(request: Request) {
     })
 
     // Send real-time update
-    await pusherServer.trigger(`order-${orderId}`, 'status-update', {
-      orderId: order.id,
-      status: order.status,
-    })
+    if (pusherServer) {
+      await pusherServer.trigger(`order-${orderId}`, 'status-update', {
+        orderId: order.id,
+        status: order.status,
+      })
+    }
 
     // Send WhatsApp notification
     try {
@@ -58,7 +60,7 @@ export async function POST(request: Request) {
         generateWhatsAppOrderMessage({
           id: order.id,
           customerName: order.customerName,
-          items: order.items.map((item) => ({
+          items: order.items.map((item: (typeof order.items)[number]) => ({
             name: item.menuItem.name,
             quantity: item.quantity,
             price: item.price,

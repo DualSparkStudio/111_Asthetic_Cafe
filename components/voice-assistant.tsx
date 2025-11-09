@@ -6,11 +6,23 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { motion, AnimatePresence } from 'framer-motion'
 
+type SpeechRecognitionInstance = {
+  start: () => void
+  stop: () => void
+  abort: () => void
+  onresult: ((event: any) => void) | null
+  onerror: ((event: any) => void) | null
+  onend?: (() => void) | null
+  continuous: boolean
+  lang: string
+  interimResults: boolean
+}
+
 export function VoiceAssistant() {
   const [isListening, setIsListening] = useState(false)
   const [transcript, setTranscript] = useState('')
   const [isOpen, setIsOpen] = useState(false)
-  const recognitionRef = useRef<SpeechRecognition | null>(null)
+  const recognitionRef = useRef<SpeechRecognitionInstance | null>(null)
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
@@ -21,7 +33,7 @@ export function VoiceAssistant() {
       recognition.interimResults = true
       recognition.lang = 'en-US'
 
-      recognition.onresult = (event: SpeechRecognitionEvent) => {
+      recognition.onresult = (event: any) => {
         let interimTranscript = ''
         let finalTranscript = ''
 

@@ -21,7 +21,9 @@ export async function GET() {
     })
 
     const totalOrders = orders.length
-    const totalRevenue = orders.reduce((sum, order) => sum + order.totalAmount, 0)
+    const totalRevenue = orders.reduce((sum: number, order: (typeof orders)[number]) => {
+      return sum + order.totalAmount
+    }, 0)
 
     return NextResponse.json({
       totalOrders,
