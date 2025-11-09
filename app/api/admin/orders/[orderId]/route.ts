@@ -26,11 +26,13 @@ export async function PATCH(
       data: { status },
     })
 
-    // Send real-time update
-    await pusherServer.trigger(`order-${params.orderId}`, 'status-update', {
-      orderId: order.id,
-      status: order.status,
-    })
+    // Send real-time update (if pusher is configured)
+    if (pusherServer) {
+      await pusherServer.trigger(`order-${params.orderId}`, 'status-update', {
+        orderId: order.id,
+        status: order.status,
+      })
+    }
 
     return NextResponse.json(order)
   } catch (error) {
