@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
@@ -24,7 +24,7 @@ const floatingImages = [
     alt: '3D lounge interior',
     className: 'absolute top-1/2 right-20 w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl transform rotate-12',
   },
-]
+];
 
 const signatureScenes = [
   {
@@ -43,11 +43,11 @@ const signatureScenes = [
     image: 'https://source.unsplash.com/1200x900/?3d,lounge',
   },
   {
-    title: 'Chef’s Gallery',
+    title: "Chef's Gallery",
     description: 'An open kitchen framed by cinematic glass, showcasing culinary artistry in 3D.',
     image: 'https://source.unsplash.com/1200x900/?3d,kitchen',
   },
-]
+];
 
 export default function Home() {
   return (
