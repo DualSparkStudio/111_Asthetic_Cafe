@@ -49,7 +49,7 @@ export function ImageLoader({
 
   if (fill) {
     return (
-      <div className={`relative ${className}`}>
+      <div className="relative h-full w-full">
         <AnimatePresence mode="wait">
           {isLoading && (
             <motion.div
@@ -90,7 +90,7 @@ export function ImageLoader({
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <div className="relative" style={{ width, height }}>
       <AnimatePresence mode="wait">
         {isLoading && (
           <motion.div
@@ -99,7 +99,6 @@ export function ImageLoader({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-primary/10 to-pink-50"
-            style={{ width, height }}
           >
             <motion.div
               animate={{ rotate: 360 }}
