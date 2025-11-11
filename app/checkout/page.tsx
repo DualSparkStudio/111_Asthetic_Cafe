@@ -56,6 +56,18 @@ export default function CheckoutPage() {
         throw new Error(data.error || 'Failed to create order')
       }
 
+      // If payments are disabled (no Razorpay order), mark order as placed for manual handling
+      if (!data.paymentsEnabled || !data.razorpayOrder) {
+        clearCart()
+        toast({
+          title: 'Order placed!',
+          description: `Your order #${data.order.id} has been received. A team member will contact you shortly to confirm payment.`,
+        })
+        router.push(`/tracking/${data.order.id}`)
+        setIsProcessing(false)
+        return
+      }
+
       // Initialize Razorpay
       const script = document.createElement('script')
       script.src = 'https://checkout.razorpay.com/v1/checkout.js'

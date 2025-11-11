@@ -74,7 +74,7 @@ export default function AboutPage() {
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/0 to-white/50" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/25" />
           </div>
         </div>
         <motion.div

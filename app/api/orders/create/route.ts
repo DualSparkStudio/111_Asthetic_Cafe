@@ -49,26 +49,32 @@ export async function POST(request: Request) {
     })
 
     // Create Razorpay order
-    const razorpayOrder = await createRazorpayOrder({
-      amount: totalAmount * 100, // Convert to paise
-      currency: 'INR',
-      receipt: order.id,
-      notes: {
-        orderId: order.id,
-        customerName,
-        customerEmail,
-      },
-    })
+    let razorpayOrder: any = null
 
-    // Update order with Razorpay order ID
-    await prisma.order.update({
-      where: { id: order.id },
-      data: { razorpayOrderId: razorpayOrder.id },
-    })
+    try {
+      razorpayOrder = await createRazorpayOrder({
+        amount: totalAmount * 100, // Convert to paise
+        currency: 'INR',
+        receipt: order.id,
+        notes: {
+          orderId: order.id,
+          customerName,
+          customerEmail,
+        },
+      })
+
+      await prisma.order.update({
+        where: { id: order.id },
+        data: { razorpayOrderId: razorpayOrder.id },
+      })
+    } catch (paymentError) {
+      console.warn('Razorpay not configured or order creation failed. Continuing without payment gateway.', paymentError)
+    }
 
     return NextResponse.json({
       order,
       razorpayOrder,
+      paymentsEnabled: !!razorpayOrder,
     })
   } catch (error) {
     console.error('Error creating order:', error)

@@ -73,7 +73,7 @@ export default function Home() {
         </div>
         
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-white/20 via-white/0 to-pink-50/40" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-black/70 via-black/50 to-black/30" />
         
         {/* Floating Images with Scroll Animations */}
         <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
