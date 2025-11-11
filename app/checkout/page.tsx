@@ -39,8 +39,10 @@ export default function CheckoutPage() {
         body: JSON.stringify({
           items: items.map((item) => ({
             menuItemId: item.id,
+            name: item.name,
             quantity: item.quantity,
             price: item.price,
+            category: 'Other', // Default category, will be updated if item exists
           })),
           customerName: formData.customerName,
           customerEmail: formData.customerEmail,
@@ -53,7 +55,9 @@ export default function CheckoutPage() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to create order')
+        const errorMsg = data.error || `Failed to create order (${response.status})`
+        console.error('Order creation failed:', { status: response.status, data })
+        throw new Error(errorMsg)
       }
 
       // If payments are disabled (no Razorpay order), mark order as placed for manual handling

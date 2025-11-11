@@ -14,11 +14,56 @@ export async function POST(request: Request) {
       deliveryTime,
     } = body
 
+    // Validate input
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return NextResponse.json(
+        { error: 'Cart is empty. Please add items to your cart.' },
+        { status: 400 }
+      )
+    }
+
+    if (!customerName || !customerEmail || !customerPhone) {
+      return NextResponse.json(
+        { error: 'Please provide all required customer information.' },
+        { status: 400 }
+      )
+    }
+
     // Calculate total
     const totalAmount = items.reduce(
-      (sum: number, item: any) => sum + item.price * item.quantity,
+      (sum: number, item: any) => sum + (item.price || 0) * (item.quantity || 0),
       0
     )
+
+    if (totalAmount <= 0) {
+      return NextResponse.json(
+        { error: 'Invalid order total. Please check your cart items.' },
+        { status: 400 }
+      )
+    }
+
+    // Ensure menu items exist in database (create if they don't)
+    for (const item of items) {
+      try {
+        await prisma.menuItem.findUniqueOrThrow({
+          where: { id: item.menuItemId },
+        })
+      } catch {
+        // Menu item doesn't exist, create it
+        await prisma.menuItem.upsert({
+          where: { id: item.menuItemId },
+          update: {},
+          create: {
+            id: item.menuItemId,
+            name: item.name || 'Menu Item',
+            description: item.description || '',
+            price: item.price,
+            category: item.category || 'Other',
+            available: true,
+          },
+        })
+      }
+    }
 
     // Create order in database
     const order = await prisma.order.create({
@@ -76,10 +121,11 @@ export async function POST(request: Request) {
       razorpayOrder,
       paymentsEnabled: !!razorpayOrder,
     })
-  } catch (error) {
+  } catch (error: any) {
     console.error('Error creating order:', error)
+    const errorMessage = error?.message || 'Failed to create order'
     return NextResponse.json(
-      { error: 'Failed to create order' },
+      { error: errorMessage, details: error?.stack },
       { status: 500 }
     )
   }
