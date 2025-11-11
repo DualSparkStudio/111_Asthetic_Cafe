@@ -2,11 +2,52 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Coffee, Clock, MapPin } from 'lucide-react'
+import { ArrowRight, Coffee, Clock, MapPin, Sparkles } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { ImageLoader } from '@/components/image-loader'
 import { GlitchEffect } from '@/components/glitch-effect'
 import { ScrollAnimation, ParallaxScroll } from '@/components/scroll-animation'
+
+const floatingImages = [
+  {
+    src: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1600&q=95',
+    alt: 'Luxe seating',
+    className: 'absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform rotate-6',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=1600&q=95',
+    alt: 'Curated pastries',
+    className: 'absolute bottom-20 right-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform -rotate-6',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=95',
+    alt: 'Ambient lounge',
+    className: 'absolute top-1/2 right-20 w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl transform rotate-12',
+  },
+]
+
+const signatureScenes = [
+  {
+    title: 'Golden Hour Atrium',
+    description: 'Sun-splashed marble surfaces and cascading greenery create a cinematic welcome.',
+    image: 'https://images.unsplash.com/photo-1497644083578-611b798c60f1?auto=format&fit=crop&w=2000&q=95',
+  },
+  {
+    title: 'Barista Stage',
+    description: 'Every pour is choreographed under warm studio lighting for a truly immersive ritual.',
+    image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=2000&q=95',
+  },
+  {
+    title: 'Velvet Lounge',
+    description: 'Intimate seating vignettes wrapped in velvet and brass for after-dark conversations.',
+    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=2000&q=95',
+  },
+  {
+    title: 'Chef’s Gallery',
+    description: 'An open kitchen framed by smoked glass where culinary artistry takes the spotlight.',
+    image: 'https://images.unsplash.com/photo-1529010392921-13530992e4ab?auto=format&fit=crop&w=2000&q=95',
+  },
+]
 
 export default function Home() {
   return (
@@ -18,8 +59,8 @@ export default function Home() {
           <ParallaxScroll speed={0.3}>
             <div className="relative w-full h-full">
               <ImageLoader
-                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920&h=1080&fit=crop&q=90"
-                alt="Café Interior"
+                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=2200&q=95"
+                alt="Café interior drenched in warm light"
                 fill
                 className="object-cover opacity-40"
                 priority
@@ -33,41 +74,14 @@ export default function Home() {
         
         {/* Floating Images with Scroll Animations */}
         <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
-          <ScrollAnimation direction="scale" delay={0.2} amount={0.1}>
-            <div className="absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform rotate-6">
-              <ImageLoader
-                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=800&fit=crop&q=90"
-                alt="Coffee"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </ScrollAnimation>
-          
-          <ScrollAnimation direction="scale" delay={0.4} amount={0.1}>
-            <div className="absolute bottom-20 right-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform -rotate-6">
-              <ImageLoader
-                src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=800&h=800&fit=crop&q=90"
-                alt="Pastries"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </ScrollAnimation>
-          
-          <ScrollAnimation direction="scale" delay={0.6} amount={0.1}>
-            <div className="absolute top-1/2 right-20 w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl transform rotate-12">
-              <ImageLoader
-                src="https://images.unsplash.com/photo-1511920170033-f8396924c348?w=800&h=800&fit=crop&q=90"
-                alt="Coffee Beans"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-          </ScrollAnimation>
+          {floatingImages.map((image, index) => (
+            <ScrollAnimation key={image.src} direction="scale" delay={0.2 + index * 0.2} amount={0.1}>
+              <div className={image.className}>
+                <ImageLoader src={image.src} alt={image.alt} fill className="object-cover" priority />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+              </div>
+            </ScrollAnimation>
+          ))}
         </div>
         
         {/* Content */}
@@ -122,21 +136,21 @@ export default function Home() {
             {[
               {
                 icon: Coffee,
-                title: "Premium Coffee",
-                description: "Sourced from the finest coffee beans around the world",
-                image: "https://images.unsplash.com/photo-1511920170033-f8396924c348?w=1200&h=800&fit=crop&q=90",
+                title: 'Sensory Coffee',
+                description: 'Single-origin micro-lots brewed with precision to capture every note.',
+                image: 'https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=1600&q=95',
               },
               {
                 icon: Clock,
-                title: "Fast Delivery",
-                description: "Get your favorite dishes delivered in no time",
-                image: "https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=1200&h=800&fit=crop&q=90",
+                title: 'Seamless Service',
+                description: 'Concierge-style experiences timed to the cadence of your day.',
+                image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=95',
               },
               {
                 icon: MapPin,
-                title: "Prime Location",
-                description: "Visit us at our beautiful location in the heart of the city",
-                image: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&h=800&fit=crop&q=90",
+                title: 'Iconic Locale',
+                description: 'A cinematic refuge in the heart of the city, curated for unforgettable gatherings.',
+                image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=95',
               },
             ].map((feature, index) => (
               <ScrollAnimation
@@ -188,10 +202,10 @@ export default function Home() {
             <p className="text-center text-muted-foreground mb-12">@cafeluxe</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               {[
-                "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=1200&fit=crop&q=90",
-                "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200&h=1200&fit=crop&q=90",
-                "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&h=1200&fit=crop&q=90",
-                "https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=1200&h=1200&fit=crop&q=90",
+                'https://images.unsplash.com/photo-1481068164146-e8beb686f4d2?auto=format&fit=crop&w=1200&q=95',
+                'https://images.unsplash.com/photo-1615880484746-a134be9d01c0?auto=format&fit=crop&w=1200&q=95',
+                'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1200&q=95',
+                'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=95',
               ].map((image, index) => (
                 <ScrollAnimation
                   key={index}
@@ -217,6 +231,51 @@ export default function Home() {
               ))}
             </div>
           </ScrollAnimation>
+        </div>
+      </section>
+
+      {/* Signature Scenes */}
+      <section className="py-20 bg-gradient-to-b from-background to-primary/5">
+        <div className="container space-y-12">
+          <ScrollAnimation direction="fade" amount={0.2}>
+            <div className="text-center max-w-2xl mx-auto space-y-4">
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-5 py-2 text-xs uppercase tracking-[0.35em] text-primary"
+              >
+                <Sparkles className="h-4 w-4" />
+                Signature Scenes
+              </motion.span>
+              <h2 className="text-4xl font-bold bg-gradient-to-r from-primary via-pink-600 to-primary bg-clip-text text-transparent">
+                Moments that Feel Ultra-Real
+              </h2>
+              <p className="text-muted-foreground">
+                Step inside curated worlds where light, texture, and craft align to transform a café visit into a cinematic experience.
+              </p>
+            </div>
+          </ScrollAnimation>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-12">
+            {signatureScenes.map((scene, index) => (
+              <ScrollAnimation key={scene.title} direction="up" delay={index * 0.1} amount={0.25}>
+                <motion.div
+                  className="group relative h-80 md:h-96 overflow-hidden rounded-3xl shadow-2xl"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.4 }}
+                >
+                  <ImageLoader src={scene.image} alt={scene.title} fill className="object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+                  <div className="absolute bottom-6 left-6 right-6 space-y-2 text-white">
+                    <h3 className="text-2xl font-semibold">{scene.title}</h3>
+                    <p className="text-sm text-white/80">{scene.description}</p>
+                  </div>
+                </motion.div>
+              </ScrollAnimation>
+            ))}
+          </div>
         </div>
       </section>
     </div>
