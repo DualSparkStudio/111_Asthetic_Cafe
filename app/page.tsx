@@ -10,18 +10,18 @@ import { ScrollAnimation, ParallaxScroll } from '@/components/scroll-animation'
 
 const floatingImages = [
   {
-    src: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1600&q=95',
-    alt: 'Luxe seating',
+    src: 'https://source.unsplash.com/800x800/?3d,coffee-art',
+    alt: 'Sculpted latte art in 3D',
     className: 'absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform rotate-6',
   },
   {
-    src: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=1600&q=95',
-    alt: 'Curated pastries',
+    src: 'https://source.unsplash.com/800x800/?3d,dessert',
+    alt: '3D dessert showcase',
     className: 'absolute bottom-20 right-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform -rotate-6',
   },
   {
-    src: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=95',
-    alt: 'Ambient lounge',
+    src: 'https://source.unsplash.com/700x700/?3d,cafe',
+    alt: '3D lounge interior',
     className: 'absolute top-1/2 right-20 w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl transform rotate-12',
   },
 ]
@@ -29,23 +29,23 @@ const floatingImages = [
 const signatureScenes = [
   {
     title: 'Golden Hour Atrium',
-    description: 'Sun-splashed marble surfaces and cascading greenery create a cinematic welcome.',
-    image: 'https://images.unsplash.com/photo-1497644083578-611b798c60f1?auto=format&fit=crop&w=2000&q=95',
+    description: 'Sun-splashed marble surfaces and cascading greenery crafted in immersive 3D detail.',
+    image: 'https://source.unsplash.com/1200x900/?3d,luxury-cafe',
   },
   {
     title: 'Barista Stage',
-    description: 'Every pour is choreographed under warm studio lighting for a truly immersive ritual.',
-    image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=2000&q=95',
+    description: 'Every pour choreographed beneath studio lighting for a hyper-real tasting ritual.',
+    image: 'https://source.unsplash.com/1200x900/?3d,barista',
   },
   {
     title: 'Velvet Lounge',
-    description: 'Intimate seating vignettes wrapped in velvet and brass for after-dark conversations.',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=2000&q=95',
+    description: 'Intimate seating vignettes rendered with plush textures and floating ambient light.',
+    image: 'https://source.unsplash.com/1200x900/?3d,lounge',
   },
   {
     title: 'Chef’s Gallery',
-    description: 'An open kitchen framed by smoked glass where culinary artistry takes the spotlight.',
-    image: 'https://images.unsplash.com/photo-1529010392921-13530992e4ab?auto=format&fit=crop&w=2000&q=95',
+    description: 'An open kitchen framed by cinematic glass, showcasing culinary artistry in 3D.',
+    image: 'https://source.unsplash.com/1200x900/?3d,kitchen',
   },
 ]
 
@@ -59,10 +59,10 @@ export default function Home() {
           <ParallaxScroll speed={0.3}>
             <div className="relative w-full h-full">
               <ImageLoader
-                src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=2200&q=95"
-                alt="Café interior drenched in warm light"
+                src="https://source.unsplash.com/1920x1080/?3d,coffee-shop"
+                alt="Immersive 3D café interior"
                 fill
-                className="object-cover opacity-40"
+                className="object-cover opacity-80"
                 priority
               />
             </div>
@@ -70,7 +70,7 @@ export default function Home() {
         </div>
         
         {/* Overlay Gradient */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-primary/20 via-background/80 to-pink-50/90" />
+        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-white/20 via-white/0 to-pink-50/40" />
         
         {/* Floating Images with Scroll Animations */}
         <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
@@ -78,7 +78,7 @@ export default function Home() {
             <ScrollAnimation key={image.src} direction="scale" delay={0.2 + index * 0.2} amount={0.1}>
               <div className={image.className}>
                 <ImageLoader src={image.src} alt={image.alt} fill className="object-cover" priority />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-transparent to-transparent" />
               </div>
             </ScrollAnimation>
           ))}
@@ -138,19 +138,19 @@ export default function Home() {
                 icon: Coffee,
                 title: 'Sensory Coffee',
                 description: 'Single-origin micro-lots brewed with precision to capture every note.',
-                image: 'https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=1600&q=95',
+                image: 'https://source.unsplash.com/1200x800/?3d,coffee',
               },
               {
                 icon: Clock,
                 title: 'Seamless Service',
                 description: 'Concierge-style experiences timed to the cadence of your day.',
-                image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=95',
+                image: 'https://source.unsplash.com/1200x800/?3d,service',
               },
               {
                 icon: MapPin,
                 title: 'Iconic Locale',
                 description: 'A cinematic refuge in the heart of the city, curated for unforgettable gatherings.',
-                image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=95',
+                image: 'https://source.unsplash.com/1200x800/?3d,architecture',
               },
             ].map((feature, index) => (
               <ScrollAnimation
@@ -170,7 +170,7 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent" />
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                     <motion.div
                       animate={{ rotate: [0, 10, -10, 0] }}
@@ -201,11 +201,11 @@ export default function Home() {
             </h2>
             <p className="text-center text-muted-foreground mb-12">@cafeluxe</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {[
-                'https://images.unsplash.com/photo-1481068164146-e8beb686f4d2?auto=format&fit=crop&w=1200&q=95',
-                'https://images.unsplash.com/photo-1615880484746-a134be9d01c0?auto=format&fit=crop&w=1200&q=95',
-                'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1200&q=95',
-                'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=95',
+              {
+                'https://source.unsplash.com/800x800/?3d,latte-art',
+                'https://source.unsplash.com/800x800/?3d,pastry',
+                'https://source.unsplash.com/800x800/?3d,interior',
+                'https://source.unsplash.com/800x800/?3d,chef',
               ].map((image, index) => (
                 <ScrollAnimation
                   key={index}
@@ -223,7 +223,7 @@ export default function Home() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <Instagram className="h-10 w-10 text-white" />
                     </div>
                   </motion.div>
@@ -267,7 +267,7 @@ export default function Home() {
                   transition={{ duration: 0.4 }}
                 >
                   <ImageLoader src={scene.image} alt={scene.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-white/5 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6 space-y-2 text-white">
                     <h3 className="text-2xl font-semibold">{scene.title}</h3>
                     <p className="text-sm text-white/80">{scene.description}</p>

@@ -12,9 +12,9 @@ import { ScrollAnimation } from '@/components/scroll-animation'
 import { ImageLoader } from '@/components/image-loader'
 
 const contactImages = [
-  'https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=1600&q=95',
-  'https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=1600&q=95',
-  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1600&q=95',
+  'https://source.unsplash.com/900x1200/?3d,coffee-lounge',
+  'https://source.unsplash.com/900x1200/?3d,coffee-table',
+  'https://source.unsplash.com/900x1200/?3d,cafe-interior',
 ]
 
 export default function ContactPage() {
@@ -41,13 +41,13 @@ export default function ContactPage() {
         <div className="absolute inset-0 -z-10">
           <div className="relative h-full w-full">
             <ImageLoader
-              src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=2200&q=95"
-              alt="Luxurious café counter at dusk"
+              src="https://source.unsplash.com/2200x1200/?3d,coffee-resort"
+              alt="Luxurious 3D café counter at dusk"
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/0 to-white/50" />
           </div>
         </div>
         <motion.div
@@ -195,7 +195,7 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.03 }}
                   >
                     <ImageLoader src={image} alt={`Café Luxe ambience ${index + 1}`} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-white/5 to-transparent" />
                   </motion.div>
                 ))}
               </div>

@@ -13,8 +13,7 @@ const storySections = [
       'Every corner of Café Luxe is curated to feel cinematic yet comforting. From the glow of filament lights to the aroma of freshly ground beans, our space is designed as a sensory escape from the ordinary.',
     highlight:
       'Our baristas capture the soul of third-wave coffee culture with precision pours and slow-roasted single-origin beans.',
-    image:
-      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=2000&q=95',
+    image: 'https://source.unsplash.com/1400x900/?3d,coffeehouse',
   },
   {
     title: 'From Farm to Cup',
@@ -22,8 +21,7 @@ const storySections = [
       'We partner with small-batch growers who champion sustainable agriculture. Their dedication allows us to serve cups that are vibrant, ethical, and unmistakably luxurious.',
     highlight:
       'Each harvest is cupped multiple times before it reaches our menu, ensuring flawless flavor profiles that stay authentic to their origin.',
-    image:
-      'https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=2000&q=95',
+    image: 'https://source.unsplash.com/1400x900/?3d,coffee-beans',
   },
   {
     title: 'Designing for Connection',
@@ -31,8 +29,7 @@ const storySections = [
       'Café Luxe was imagined as an intimate stage for conversations, celebrations, and quiet reflection. The ambience blends warm textures, tactile surfaces, and dramatic lighting to make every visit feel like a private premiere.',
     highlight:
       'Our tables are handcrafted by local artisans, and each seating vignette is styled to create depth, warmth, and a sense of calm indulgence.',
-    image:
-      'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=95',
+    image: 'https://source.unsplash.com/1400x900/?3d,luxury-lounge',
   },
 ]
 
@@ -41,25 +38,25 @@ const featureHighlights = [
     icon: Coffee,
     title: 'Premium Coffee',
     description: "Sourced from the world's most celebrated micro-lots and roasted to reveal layered complexity.",
-    image: 'https://images.unsplash.com/photo-1488036106564-87cfe0f7c46f?auto=format&fit=crop&w=1600&q=95',
+    image: 'https://source.unsplash.com/1000x700/?3d,espresso',
   },
   {
     icon: Heart,
     title: 'Made with Love',
     description: 'Our culinary team approaches every plate as a work of art, balancing comfort with couture presentation.',
-    image: 'https://images.unsplash.com/photo-1488747279002-c8523379faaa?auto=format&fit=crop&w=1600&q=95',
+    image: 'https://source.unsplash.com/1000x700/?3d,fine-dining',
   },
   {
     icon: Award,
     title: 'Award Winning',
     description: 'Recognized for elevating café culture with immersive design, avant-garde menus, and standout service.',
-    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1600&q=95',
+    image: 'https://source.unsplash.com/1000x700/?3d,award',
   },
   {
     icon: Users,
     title: 'Community',
     description: 'A gathering place where creators, innovators, and dreamers feel seen, celebrated, and inspired.',
-    image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1600&q=95',
+    image: 'https://source.unsplash.com/1000x700/?3d,community-space',
   },
 ]
 
@@ -71,13 +68,13 @@ export default function AboutPage() {
         <div className="absolute inset-0 -z-10">
           <div className="relative h-full w-full">
             <ImageLoader
-              src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2200&q=95"
-              alt="Barista preparing an artisanal coffee"
+              src="https://source.unsplash.com/2200x1200/?3d,coffee-bar"
+              alt="Barista preparing an artisanal coffee in 3D"
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/15 via-white/0 to-white/50" />
           </div>
         </div>
         <motion.div
@@ -144,7 +141,7 @@ export default function AboutPage() {
                   whileHover={{ scale: 1.02 }}
                 >
                   <ImageLoader src={section.image} alt={section.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-white/5 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
@@ -192,8 +189,8 @@ export default function AboutPage() {
                 <Card className="overflow-hidden border-primary/10 bg-white/80 backdrop-blur transition-all duration-300 hover:border-primary/30 hover:shadow-2xl">
                   <div className="relative h-40">
                     <ImageLoader src={feature.image} alt={feature.title} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                    <feature.icon className="absolute bottom-4 left-4 h-10 w-10 text-white drop-shadow-lg" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-white/5 to-transparent" />
+                    <feature.icon className="absolute bottom-4 left-4 h-10 w-10 text-primary drop-shadow-lg" />
                   </div>
                   <CardContent className="p-6 text-center space-y-3">
                     <h3 className="text-xl font-semibold">{feature.title}</h3>

@@ -43,7 +43,7 @@ export function ImageLoader({
       setHasError(true)
       setIsLoading(false)
       // Fallback to placeholder
-      setImageSrc(`https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=800&h=600&fit=crop&q=80`)
+      setImageSrc(`https://source.unsplash.com/800x600/?3d,cafe`)
     }
   }, [src])
 

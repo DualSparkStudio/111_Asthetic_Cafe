@@ -24,19 +24,19 @@ interface MenuCardProps {
 
 // Menu item images mapping - High quality realistic images
 const menuItemImages: Record<string, string> = {
-  'Coffee': 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1200&h=800&fit=crop&q=90',
-  'Pastries': 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&h=800&fit=crop&q=90',
-  'Salads': 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=800&fit=crop&q=90',
-  'Sandwiches': 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=1200&h=800&fit=crop&q=90',
-  'Desserts': 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=1200&h=800&fit=crop&q=90',
-  'Cappuccino': 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=1200&h=800&fit=crop&q=90',
-  'Latte': 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=1200&h=800&fit=crop&q=90',
-  'Americano': 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1200&h=800&fit=crop&q=90',
-  'Croissant': 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?w=1200&h=800&fit=crop&q=90',
-  'Blueberry Muffin': 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?w=1200&h=800&fit=crop&q=90',
-  'Caesar Salad': 'https://images.unsplash.com/photo-1546793665-c74683f339c1?w=1200&h=800&fit=crop&q=90',
-  'Club Sandwich': 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=1200&h=800&fit=crop&q=90',
-  'Chocolate Cake': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=1200&h=800&fit=crop&q=90',
+  Coffee: 'https://source.unsplash.com/1200x800/?3d,coffee',
+  Pastries: 'https://source.unsplash.com/1200x800/?3d,pastry',
+  Salads: 'https://source.unsplash.com/1200x800/?3d,salad',
+  Sandwiches: 'https://source.unsplash.com/1200x800/?3d,sandwich',
+  Desserts: 'https://source.unsplash.com/1200x800/?3d,dessert',
+  Cappuccino: 'https://source.unsplash.com/1200x800/?3d,cappuccino',
+  Latte: 'https://source.unsplash.com/1200x800/?3d,latte',
+  Americano: 'https://source.unsplash.com/1200x800/?3d,americano',
+  Croissant: 'https://source.unsplash.com/1200x800/?3d,croissant',
+  'Blueberry Muffin': 'https://source.unsplash.com/1200x800/?3d,muffin',
+  'Caesar Salad': 'https://source.unsplash.com/1200x800/?3d,caesar-salad',
+  'Club Sandwich': 'https://source.unsplash.com/1200x800/?3d,club-sandwich',
+  'Chocolate Cake': 'https://source.unsplash.com/1200x800/?3d,chocolate-cake',
 }
 
 export function MenuCard({ item, index, onAddToCart }: MenuCardProps) {
@@ -76,7 +76,7 @@ export function MenuCard({ item, index, onAddToCart }: MenuCardProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               priority={index < 3}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent" />
             
             {/* Featured Badge */}
             {item.featured && (

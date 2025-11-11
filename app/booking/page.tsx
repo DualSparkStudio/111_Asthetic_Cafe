@@ -12,9 +12,9 @@ import { ImageLoader } from '@/components/image-loader'
 import { motion } from 'framer-motion'
 
 const ambienceImages = [
-  'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1800&q=95',
-  'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1800&q=95',
-  'https://images.unsplash.com/photo-1529933037704-84cb2c1d6f03?auto=format&fit=crop&w=1800&q=95',
+  'https://source.unsplash.com/1200x900/?3d,fine-dining',
+  'https://source.unsplash.com/1200x900/?3d,private-dining',
+  'https://source.unsplash.com/1200x900/?3d,ambient-lighting',
 ]
 
 export default function BookingPage() {
@@ -88,13 +88,13 @@ export default function BookingPage() {
         <div className="absolute inset-0 -z-10">
           <div className="relative h-full w-full">
             <ImageLoader
-              src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=2200&q=95"
-              alt="Elegant dining room prepared for reservations"
+              src="https://source.unsplash.com/2200x1300/?3d,exclusive-restaurant"
+              alt="Elegant 3D dining room prepared for reservations"
               fill
               className="object-cover"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/30 to-black/80" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/20 via-white/0 to-white/50" />
           </div>
         </div>
         <motion.div
@@ -236,8 +236,8 @@ export default function BookingPage() {
                   whileHover={{ scale: 1.03 }}
                 >
                   <ImageLoader src={image} alt={`Café Luxe private dining ${index + 1}`} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white/90">
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-white/5 to-transparent" />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-primary">
                     <span className="text-sm font-medium tracking-wide">Ultra-realistic ambience</span>
                     <Sparkles className="h-4 w-4" />
                   </div>
