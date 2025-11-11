@@ -201,7 +201,7 @@ export default function Home() {
             </h2>
             <p className="text-center text-muted-foreground mb-12">@cafeluxe</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {
+              [
                 'https://source.unsplash.com/800x800/?3d,latte-art',
                 'https://source.unsplash.com/800x800/?3d,pastry',
                 'https://source.unsplash.com/800x800/?3d,interior',
