@@ -13,7 +13,7 @@ const storySections = [
       'Every corner of Café Luxe is curated to feel cinematic yet comforting. From the glow of filament lights to the aroma of freshly ground beans, our space is designed as a sensory escape from the ordinary.',
     highlight:
       'Our baristas capture the soul of third-wave coffee culture with precision pours and slow-roasted single-origin beans.',
-    image: 'https://source.unsplash.com/1400x900/?3d,coffeehouse',
+    image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1600&q=95',
   },
   {
     title: 'From Farm to Cup',
@@ -21,7 +21,7 @@ const storySections = [
       'We partner with small-batch growers who champion sustainable agriculture. Their dedication allows us to serve cups that are vibrant, ethical, and unmistakably luxurious.',
     highlight:
       'Each harvest is cupped multiple times before it reaches our menu, ensuring flawless flavor profiles that stay authentic to their origin.',
-    image: 'https://source.unsplash.com/1400x900/?3d,coffee-beans',
+    image: 'https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=1600&q=95',
   },
   {
     title: 'Designing for Connection',
@@ -29,7 +29,7 @@ const storySections = [
       'Café Luxe was imagined as an intimate stage for conversations, celebrations, and quiet reflection. The ambience blends warm textures, tactile surfaces, and dramatic lighting to make every visit feel like a private premiere.',
     highlight:
       'Our tables are handcrafted by local artisans, and each seating vignette is styled to create depth, warmth, and a sense of calm indulgence.',
-    image: 'https://source.unsplash.com/1400x900/?3d,luxury-lounge',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1600&q=95',
   },
 ]
 
@@ -38,25 +38,25 @@ const featureHighlights = [
     icon: Coffee,
     title: 'Premium Coffee',
     description: "Sourced from the world's most celebrated micro-lots and roasted to reveal layered complexity.",
-    image: 'https://source.unsplash.com/1000x700/?3d,espresso',
+    image: 'https://images.unsplash.com/photo-1488036106564-87cfe0f7c46f?auto=format&fit=crop&w=1200&q=95',
   },
   {
     icon: Heart,
     title: 'Made with Love',
     description: 'Our culinary team approaches every plate as a work of art, balancing comfort with couture presentation.',
-    image: 'https://source.unsplash.com/1000x700/?3d,fine-dining',
+    image: 'https://images.unsplash.com/photo-1488747279002-c8523379faaa?auto=format&fit=crop&w=1200&q=95',
   },
   {
     icon: Award,
     title: 'Award Winning',
     description: 'Recognized for elevating café culture with immersive design, avant-garde menus, and standout service.',
-    image: 'https://source.unsplash.com/1000x700/?3d,award',
+    image: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1200&q=95',
   },
   {
     icon: Users,
     title: 'Community',
     description: 'A gathering place where creators, innovators, and dreamers feel seen, celebrated, and inspired.',
-    image: 'https://source.unsplash.com/1000x700/?3d,community-space',
+    image: 'https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=1200&q=95',
   },
 ]
 
@@ -68,8 +68,8 @@ export default function AboutPage() {
         <div className="absolute inset-0 -z-10">
           <div className="relative h-full w-full">
             <ImageLoader
-              src="https://source.unsplash.com/2200x1200/?3d,coffee-bar"
-              alt="Barista preparing an artisanal coffee in 3D"
+              src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2200&q=95"
+              alt="Barista preparing an artisanal coffee"
               fill
               className="object-cover"
               priority

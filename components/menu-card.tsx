@@ -24,19 +24,19 @@ interface MenuCardProps {
 
 // Menu item images mapping - High quality realistic images
 const menuItemImages: Record<string, string> = {
-  Coffee: 'https://source.unsplash.com/1200x800/?3d,coffee',
-  Pastries: 'https://source.unsplash.com/1200x800/?3d,pastry',
-  Salads: 'https://source.unsplash.com/1200x800/?3d,salad',
-  Sandwiches: 'https://source.unsplash.com/1200x800/?3d,sandwich',
-  Desserts: 'https://source.unsplash.com/1200x800/?3d,dessert',
-  Cappuccino: 'https://source.unsplash.com/1200x800/?3d,cappuccino',
-  Latte: 'https://source.unsplash.com/1200x800/?3d,latte',
-  Americano: 'https://source.unsplash.com/1200x800/?3d,americano',
-  Croissant: 'https://source.unsplash.com/1200x800/?3d,croissant',
-  'Blueberry Muffin': 'https://source.unsplash.com/1200x800/?3d,muffin',
-  'Caesar Salad': 'https://source.unsplash.com/1200x800/?3d,caesar-salad',
-  'Club Sandwich': 'https://source.unsplash.com/1200x800/?3d,club-sandwich',
-  'Chocolate Cake': 'https://source.unsplash.com/1200x800/?3d,chocolate-cake',
+  Coffee: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=95',
+  Pastries: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=95',
+  Salads: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=95',
+  Sandwiches: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=1200&q=95',
+  Desserts: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&w=1200&q=95',
+  Cappuccino: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=1200&q=95',
+  Latte: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=1200&q=95',
+  Americano: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1200&q=95',
+  Croissant: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=1200&q=95',
+  'Blueberry Muffin': 'https://images.unsplash.com/photo-1607958996333-41aef7caefaa?auto=format&fit=crop&w=1200&q=95',
+  'Caesar Salad': 'https://images.unsplash.com/photo-1546793665-c74683f339c1?auto=format&fit=crop&w=1200&q=95',
+  'Club Sandwich': 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?auto=format&fit=crop&w=1200&q=95',
+  'Chocolate Cake': 'https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1200&q=95',
 }
 
 export function MenuCard({ item, index, onAddToCart }: MenuCardProps) {

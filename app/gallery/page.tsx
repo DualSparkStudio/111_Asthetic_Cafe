@@ -6,18 +6,18 @@ import { ScrollAnimation } from '@/components/scroll-animation'
 
 export default function GalleryPage() {
   const galleryItems = [
-    { id: 1, src: 'https://source.unsplash.com/1200x1200/?3d,coffee', alt: '3D Coffee' },
-    { id: 2, src: 'https://source.unsplash.com/1200x1200/?3d,cafe-design', alt: '3D Café Interior' },
-    { id: 3, src: 'https://source.unsplash.com/1200x1200/?3d,gourmet', alt: '3D Gourmet Spread' },
-    { id: 4, src: 'https://source.unsplash.com/1200x1200/?3d,patisserie', alt: '3D Pastries' },
-    { id: 5, src: 'https://source.unsplash.com/1200x1200/?3d,coffee-beans', alt: '3D Coffee Beans' },
-    { id: 6, src: 'https://source.unsplash.com/1200x1200/?3d,delivery', alt: '3D Delivery Experience' },
-    { id: 7, src: 'https://source.unsplash.com/1200x1200/?3d,ambience', alt: '3D Café Ambience' },
-    { id: 8, src: 'https://source.unsplash.com/1200x1200/?3d,latte-art', alt: '3D Latte Art' },
-    { id: 9, src: 'https://source.unsplash.com/1200x1200/?3d,barista', alt: '3D Coffee Craft' },
-    { id: 10, src: 'https://source.unsplash.com/1200x1200/?3d,dessert', alt: '3D Desserts' },
-    { id: 11, src: 'https://source.unsplash.com/1200x1200/?3d,breakfast', alt: '3D Breakfast' },
-    { id: 12, src: 'https://source.unsplash.com/1200x1200/?3d,city-cafe', alt: '3D Café View' },
+    { id: 1, src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=1200&q=95', alt: 'Signature Coffee' },
+    { id: 2, src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=95', alt: 'Café Interior' },
+    { id: 3, src: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=95', alt: 'Gourmet Plating' },
+    { id: 4, src: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1200&q=95', alt: 'Artisan Pastries' },
+    { id: 5, src: 'https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=1200&q=95', alt: 'Coffee Beans' },
+    { id: 6, src: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?auto=format&fit=crop&w=1200&q=95', alt: 'Delivery Experience' },
+    { id: 7, src: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=95', alt: 'Café Ambience' },
+    { id: 8, src: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=95', alt: 'Latte Art' },
+    { id: 9, src: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=1200&q=95', alt: 'Coffee Craft' },
+    { id: 10, src: 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=1200&q=95', alt: 'Dessert Detail' },
+    { id: 11, src: 'https://images.unsplash.com/photo-1550966871-3ed3cdb5ed0c?auto=format&fit=crop&w=1200&q=95', alt: 'Breakfast Spread' },
+    { id: 12, src: 'https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=95', alt: 'Café View' },
   ]
 
   return (

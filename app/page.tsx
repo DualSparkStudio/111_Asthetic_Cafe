@@ -10,42 +10,45 @@ import { ScrollAnimation, ParallaxScroll } from '@/components/scroll-animation'
 
 const floatingImages = [
   {
-    src: 'https://source.unsplash.com/800x800/?3d,coffee-art',
-    alt: 'Sculpted latte art in 3D',
-    className: 'absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform rotate-6',
+    src: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=95',
+    alt: 'Luxe café barista counter',
+    className:
+      'absolute top-20 left-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform rotate-6',
   },
   {
-    src: 'https://source.unsplash.com/800x800/?3d,dessert',
-    alt: '3D dessert showcase',
-    className: 'absolute bottom-20 right-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform -rotate-6',
+    src: 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=95',
+    alt: 'Curated pastry selection',
+    className:
+      'absolute bottom-20 right-10 w-48 h-48 md:w-64 md:h-64 rounded-2xl overflow-hidden shadow-2xl transform -rotate-6',
   },
   {
-    src: 'https://source.unsplash.com/700x700/?3d,cafe',
-    alt: '3D lounge interior',
-    className: 'absolute top-1/2 right-20 w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl transform rotate-12',
+    src: 'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=95',
+    alt: 'Ambient lounge lighting',
+    className:
+      'absolute top-1/2 right-20 w-40 h-40 md:w-56 md:h-56 rounded-2xl overflow-hidden shadow-2xl transform rotate-12',
   },
 ];
 
 const signatureScenes = [
   {
     title: 'Golden Hour Atrium',
-    description: 'Sun-splashed marble surfaces and cascading greenery crafted in immersive 3D detail.',
-    image: 'https://source.unsplash.com/1200x900/?3d,luxury-cafe',
+    description: 'Sun-splashed marble surfaces and cascading greenery crafted for immersive arrival moments.',
+    image: 'https://images.unsplash.com/photo-1497644083578-611b798c60f1?auto=format&fit=crop&w=1400&q=95',
   },
   {
     title: 'Barista Stage',
     description: 'Every pour choreographed beneath studio lighting for a hyper-real tasting ritual.',
-    image: 'https://source.unsplash.com/1200x900/?3d,barista',
+    image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1400&q=95',
   },
   {
     title: 'Velvet Lounge',
     description: 'Intimate seating vignettes rendered with plush textures and floating ambient light.',
-    image: 'https://source.unsplash.com/1200x900/?3d,lounge',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=95',
   },
   {
     title: "Chef's Gallery",
     description: 'An open kitchen framed by cinematic glass, showcasing culinary artistry in 3D.',
-    image: 'https://source.unsplash.com/1200x900/?3d,kitchen',
+    image: 'https://images.unsplash.com/photo-1529010392921-13530992e4ab?auto=format&fit=crop&w=1400&q=95',
   },
 ];
 
@@ -59,8 +62,8 @@ export default function Home() {
           <ParallaxScroll speed={0.3}>
             <div className="relative w-full h-full">
               <ImageLoader
-                src="https://source.unsplash.com/1920x1080/?3d,coffee-shop"
-                alt="Immersive 3D café interior"
+                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2200&q=95"
+                alt="Immersive café interior bathed in warm light"
                 fill
                 className="object-cover opacity-80"
                 priority
@@ -138,19 +141,19 @@ export default function Home() {
                 icon: Coffee,
                 title: 'Sensory Coffee',
                 description: 'Single-origin micro-lots brewed with precision to capture every note.',
-                image: 'https://source.unsplash.com/1200x800/?3d,coffee',
+                image: 'https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=1200&q=95',
               },
               {
                 icon: Clock,
                 title: 'Seamless Service',
                 description: 'Concierge-style experiences timed to the cadence of your day.',
-                image: 'https://source.unsplash.com/1200x800/?3d,service',
+                image: 'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=1200&q=95',
               },
               {
                 icon: MapPin,
                 title: 'Iconic Locale',
                 description: 'A cinematic refuge in the heart of the city, curated for unforgettable gatherings.',
-                image: 'https://source.unsplash.com/1200x800/?3d,architecture',
+                image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=95',
               },
             ].map((feature, index) => (
               <ScrollAnimation
@@ -201,11 +204,11 @@ export default function Home() {
             </h2>
             <p className="text-center text-muted-foreground mb-12">@cafeluxe</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              [
-                'https://source.unsplash.com/800x800/?3d,latte-art',
-                'https://source.unsplash.com/800x800/?3d,pastry',
-                'https://source.unsplash.com/800x800/?3d,interior',
-                'https://source.unsplash.com/800x800/?3d,chef',
+              {[
+                'https://images.unsplash.com/photo-1481068164146-e8beb686f4d2?auto=format&fit=crop&w=900&q=95',
+                'https://images.unsplash.com/photo-1615880484746-a134be9d01c0?auto=format&fit=crop&w=900&q=95',
+                'https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=900&q=95',
+                'https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=900&q=95',
               ].map((image, index) => (
                 <ScrollAnimation
                   key={index}

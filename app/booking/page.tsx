@@ -12,9 +12,9 @@ import { ImageLoader } from '@/components/image-loader'
 import { motion } from 'framer-motion'
 
 const ambienceImages = [
-  'https://source.unsplash.com/1200x900/?3d,fine-dining',
-  'https://source.unsplash.com/1200x900/?3d,private-dining',
-  'https://source.unsplash.com/1200x900/?3d,ambient-lighting',
+  'https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=1400&q=95',
+  'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1400&q=95',
+  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=95',
 ]
 
 export default function BookingPage() {
@@ -88,8 +88,8 @@ export default function BookingPage() {
         <div className="absolute inset-0 -z-10">
           <div className="relative h-full w-full">
             <ImageLoader
-              src="https://source.unsplash.com/2200x1300/?3d,exclusive-restaurant"
-              alt="Elegant 3D dining room prepared for reservations"
+              src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=2200&q=95"
+              alt="Elegant dining room prepared for reservations"
               fill
               className="object-cover"
               priority

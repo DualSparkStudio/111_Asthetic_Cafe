@@ -12,9 +12,9 @@ import { ScrollAnimation } from '@/components/scroll-animation'
 import { ImageLoader } from '@/components/image-loader'
 
 const contactImages = [
-  'https://source.unsplash.com/900x1200/?3d,coffee-lounge',
-  'https://source.unsplash.com/900x1200/?3d,coffee-table',
-  'https://source.unsplash.com/900x1200/?3d,cafe-interior',
+  'https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?auto=format&fit=crop&w=1000&q=95',
+  'https://images.unsplash.com/photo-1504753793650-d4a2b783c15e?auto=format&fit=crop&w=1000&q=95',
+  'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1000&q=95',
 ]
 
 export default function ContactPage() {
@@ -41,8 +41,8 @@ export default function ContactPage() {
         <div className="absolute inset-0 -z-10">
           <div className="relative h-full w-full">
             <ImageLoader
-              src="https://source.unsplash.com/2200x1200/?3d,coffee-resort"
-              alt="Luxurious 3D café counter at dusk"
+              src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?auto=format&fit=crop&w=2200&q=95"
+              alt="Luxurious café counter at dusk"
               fill
               className="object-cover"
               priority
