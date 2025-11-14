@@ -4,7 +4,7 @@ import './globals.css'
 import { Providers } from '@/components/providers'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
-import { WhatsAppButton } from '@/components/whatsapp-button'
+import { FloatingSocial } from '@/components/floating-social'
 import { VoiceAssistant } from '@/components/voice-assistant'
 import { ScrollProgressWrapper } from '@/components/scroll-progress-wrapper'
 
@@ -30,7 +30,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <WhatsAppButton />
+          <FloatingSocial />
           <VoiceAssistant />
         </Providers>
       </body>

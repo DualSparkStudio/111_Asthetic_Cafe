@@ -55,80 +55,173 @@ const signatureScenes = [
 export default function Home() {
   return (
     <div className="relative">
-      {/* Hero Section with Realistic Images */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Images with Parallax */}
+      {/* Hero Section - Redesigned */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+        {/* Animated Background Pattern */}
         <div className="absolute inset-0 z-0">
-          <ParallaxScroll speed={0.3}>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(236,72,153,0.1),transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(139,92,246,0.1),transparent_50%)]" />
+        </div>
+
+        {/* Main Background Image with Parallax */}
+        <div className="absolute inset-0 z-[1]">
+          <ParallaxScroll speed={0.2}>
             <div className="relative w-full h-full">
               <ImageLoader
                 src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2200&q=95"
                 alt="Immersive café interior bathed in warm light"
                 fill
-                className="object-cover opacity-80"
+                className="object-cover opacity-30"
                 priority
               />
             </div>
           </ParallaxScroll>
         </div>
         
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 z-[1] bg-gradient-to-br from-black/70 via-black/50 to-black/30" />
+        {/* Elegant Overlay Gradient */}
+        <div className="absolute inset-0 z-[2] bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
         
-        {/* Floating Images with Scroll Animations */}
-        <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none">
-          {floatingImages.map((image, index) => (
-            <ScrollAnimation key={image.src} direction="scale" delay={0.2 + index * 0.2} amount={0.1}>
-              <div className={image.className}>
-                <ImageLoader src={image.src} alt={image.alt} fill className="object-cover" priority />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-transparent to-transparent" />
-              </div>
-            </ScrollAnimation>
-          ))}
+        {/* Redesigned Floating Images - More Elegant */}
+        <div className="absolute inset-0 z-[3] overflow-hidden pointer-events-none hidden md:block">
+          {/* Left Image - Café Interior */}
+          <ScrollAnimation direction="fade" delay={0.4} amount={0.1}>
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.3 }}
+              className="absolute top-32 left-8 lg:left-16 w-56 h-72 lg:w-72 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform -rotate-6 border-4 border-white/10 backdrop-blur-sm"
+            >
+              <ImageLoader 
+                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=95" 
+                alt="Luxe café barista counter" 
+                fill 
+                className="object-cover" 
+                priority 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            </motion.div>
+          </ScrollAnimation>
+
+          {/* Right Image - Pastry Selection */}
+          <ScrollAnimation direction="fade" delay={0.6} amount={0.1}>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1, delay: 0.5 }}
+              className="absolute bottom-32 right-8 lg:right-16 w-56 h-72 lg:w-72 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform rotate-6 border-4 border-white/10 backdrop-blur-sm"
+            >
+              <ImageLoader 
+                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=95" 
+                alt="Curated pastry selection" 
+                fill 
+                className="object-cover" 
+                priority 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+            </motion.div>
+          </ScrollAnimation>
         </div>
         
-        {/* Content */}
-        <div className="relative z-10 container text-center px-4">
-          <ScrollAnimation direction="fade" delay={0.3} amount={0.2}>
+        {/* Main Content - Enhanced Design */}
+        <div className="relative z-10 container text-center px-4 py-20">
+          <ScrollAnimation direction="fade" delay={0.2} amount={0.2}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="inline-flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-6 py-2 mb-8 backdrop-blur-sm"
+            >
+              <Sparkles className="h-4 w-4 text-pink-400" />
+              <span className="text-sm font-medium text-pink-300 uppercase tracking-wider">Premium Experience</span>
+            </motion.div>
+          </ScrollAnimation>
+
+          <ScrollAnimation direction="fade" delay={0.4} amount={0.2}>
             <GlitchEffect>
-              <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-primary via-pink-600 to-primary bg-clip-text text-transparent animate-gradient">
-                Welcome to Café Luxe
-              </h1>
+              <motion.h1
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 bg-gradient-to-r from-pink-400 via-pink-500 to-purple-500 bg-clip-text text-transparent leading-tight"
+              >
+                Welcome to
+                <br />
+                <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-pink-400 bg-clip-text text-transparent">
+                  Café Luxe
+                </span>
+              </motion.h1>
             </GlitchEffect>
           </ScrollAnimation>
           
-          <ScrollAnimation direction="up" delay={0.5} amount={0.2}>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <ScrollAnimation direction="up" delay={0.6} amount={0.2}>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+            >
               Experience the finest café dining with our curated menu and exceptional service
-            </p>
+            </motion.p>
           </ScrollAnimation>
           
-          <ScrollAnimation direction="up" delay={0.7} amount={0.2}>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <ScrollAnimation direction="up" delay={0.8} amount={0.2}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            >
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link href="/menu">
-                  <Button size="lg" className="text-lg px-8 bg-gradient-to-r from-primary to-pink-600 hover:from-primary/90 hover:to-pink-600/90 text-white shadow-lg hover:shadow-xl transition-all">
+                  <Button 
+                    size="lg" 
+                    className="text-lg px-10 py-6 bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 text-white shadow-2xl hover:shadow-pink-500/50 transition-all rounded-full border-2 border-pink-400/30"
+                  >
                     View Menu
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
               </motion.div>
               <motion.div
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
               >
                 <Link href="/booking">
-                  <Button size="lg" variant="outline" className="text-lg px-8 border-2 border-primary hover:bg-primary hover:text-white transition-all">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="text-lg px-10 py-6 border-2 border-white/30 hover:bg-white/10 hover:border-white/50 text-white backdrop-blur-sm transition-all rounded-full bg-white/5"
+                  >
                     Book a Table
                   </Button>
                 </Link>
               </motion.div>
-            </div>
+            </motion.div>
           </ScrollAnimation>
         </div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10"
+        >
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-2"
+          >
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="w-1.5 h-1.5 bg-white/50 rounded-full"
+            />
+          </motion.div>
+        </motion.div>
       </section>
 
       {/* Features Section */}
