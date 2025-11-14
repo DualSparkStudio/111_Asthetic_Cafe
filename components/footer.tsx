@@ -95,6 +95,17 @@ export function Footer() {
 
         <div className="mt-8 pt-8 border-t text-center text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Café Luxe. All rights reserved.</p>
+          <p className="mt-2">
+            Designed & Developed by{' '}
+            <a
+              href="https://dualsparkstudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline font-medium"
+            >
+              DualSpark Studio
+            </a>
+          </p>
         </div>
       </div>
     </footer>
