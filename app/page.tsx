@@ -1,9 +1,10 @@
 "use client"
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Coffee, Clock, MapPin, Sparkles, Star, Quote } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { ArrowRight, Coffee, Clock, MapPin, Sparkles, Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ImageLoader } from '@/components/image-loader'
 import { GlitchEffect } from '@/components/glitch-effect'
 import { ScrollAnimation, ParallaxScroll } from '@/components/scroll-animation'
@@ -104,6 +105,43 @@ const testimonials = [
 ];
 
 export default function Home() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [itemsPerView, setItemsPerView] = useState(3)
+
+  useEffect(() => {
+    const updateItemsPerView = () => {
+      if (window.innerWidth >= 1024) {
+        setItemsPerView(3) // Desktop: 3 items
+      } else if (window.innerWidth >= 768) {
+        setItemsPerView(2) // Tablet: 2 items
+      } else {
+        setItemsPerView(1) // Mobile: 1 item
+      }
+    }
+
+    updateItemsPerView()
+    window.addEventListener('resize', updateItemsPerView)
+    return () => window.removeEventListener('resize', updateItemsPerView)
+  }, [])
+
+  const maxIndex = Math.max(0, testimonials.length - itemsPerView)
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+  }
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1))
+  }
+
+  // Auto-play carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1))
+    }, 5000) // Change slide every 5 seconds
+    return () => clearInterval(interval)
+  }, [maxIndex])
+
   return (
     <div className="relative">
       {/* Hero Section - Pink & White Theme */}
@@ -659,94 +697,111 @@ export default function Home() {
             </div>
           </ScrollAnimation>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {testimonials.map((testimonial, index) => (
-              <ScrollAnimation key={testimonial.id} direction="up" delay={index * 0.1} amount={0.25}>
-                <motion.div
-                  className="group relative bg-white rounded-3xl p-6 md:p-8 shadow-lg border-2 border-pink-100 hover:border-pink-300 transition-all duration-300"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ 
-                    y: -8,
-                    boxShadow: "0 20px 40px -12px rgba(236, 72, 153, 0.3)"
-                  }}
-                >
-                  {/* Quote Icon */}
-                  <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
-                    <Quote className="h-16 w-16 text-pink-500" />
-                  </div>
+          {/* Carousel Container */}
+          <div className="relative">
+            {/* Navigation Arrows */}
+            <button
+              onClick={prevSlide}
+              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg border-2 border-pink-200 hover:border-pink-400 text-pink-600 hover:text-pink-700 hover:bg-pink-50 transition-all duration-300 group"
+              aria-label="Previous testimonials"
+            >
+              <ChevronLeft className="h-6 w-6 group-hover:-translate-x-1 transition-transform" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 hidden lg:flex items-center justify-center w-12 h-12 rounded-full bg-white shadow-lg border-2 border-pink-200 hover:border-pink-400 text-pink-600 hover:text-pink-700 hover:bg-pink-50 transition-all duration-300 group"
+              aria-label="Next testimonials"
+            >
+              <ChevronRight className="h-6 w-6 group-hover:translate-x-1 transition-transform" />
+            </button>
 
-                  {/* Rating Stars */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <motion.div
-                        key={i}
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: index * 0.1 + i * 0.1 }}
-                      >
-                        <Star className="h-5 w-5 fill-pink-500 text-pink-500" />
-                      </motion.div>
-                    ))}
-                  </div>
-
-                  {/* Testimonial Text */}
-                  <motion.p
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
-                    className="text-gray-700 mb-6 leading-relaxed relative z-10"
+            {/* Carousel Wrapper */}
+            <div className="overflow-hidden px-4 lg:px-0">
+              <motion.div
+                className="flex gap-6 lg:gap-8"
+                animate={{
+                  x: `-${currentIndex * (100 / itemsPerView)}%`,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 30,
+                }}
+              >
+                {testimonials.map((testimonial, index) => (
+                  <motion.div
+                    key={testimonial.id}
+                    className="group relative bg-white rounded-3xl p-6 md:p-8 shadow-lg border-2 border-pink-100 hover:border-pink-300 transition-all duration-300 flex-shrink-0"
+                    style={{
+                      width: `calc(${100 / itemsPerView}% - ${(itemsPerView - 1) * 1.5}rem / ${itemsPerView})`,
+                    }}
+                    whileHover={{
+                      y: -8,
+                      boxShadow: "0 20px 40px -12px rgba(236, 72, 153, 0.3)",
+                    }}
                   >
-                    "{testimonial.text}"
-                  </motion.p>
-
-                  {/* Author Info */}
-                  <div className="flex items-center gap-4 pt-4 border-t border-pink-100">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
-                      className="relative h-12 w-12 rounded-full overflow-hidden ring-2 ring-pink-200 group-hover:ring-pink-400 transition-all"
-                    >
-                      <ImageLoader
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </motion.div>
-                    <div>
-                      <motion.h4
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
-                        className="font-semibold text-gray-900"
-                      >
-                        {testimonial.name}
-                      </motion.h4>
-                      <motion.p
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
-                        className="text-sm text-pink-600"
-                      >
-                        {testimonial.role}
-                      </motion.p>
+                    {/* Quote Icon */}
+                    <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                      <Quote className="h-16 w-16 text-pink-500" />
                     </div>
-                  </div>
 
-                  {/* Decorative Pink Accent */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-pink-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </motion.div>
-              </ScrollAnimation>
-            ))}
+                    {/* Rating Stars */}
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className="h-5 w-5 fill-pink-500 text-pink-500"
+                        />
+                      ))}
+                    </div>
+
+                    {/* Testimonial Text */}
+                    <p className="text-gray-700 mb-6 leading-relaxed relative z-10">
+                      "{testimonial.text}"
+                    </p>
+
+                    {/* Author Info */}
+                    <div className="flex items-center gap-4 pt-4 border-t border-pink-100">
+                      <div className="relative h-12 w-12 rounded-full overflow-hidden ring-2 ring-pink-200 group-hover:ring-pink-400 transition-all">
+                        <ImageLoader
+                          src={testimonial.image}
+                          alt={testimonial.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900">
+                          {testimonial.name}
+                        </h4>
+                        <p className="text-sm text-pink-600">
+                          {testimonial.role}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Decorative Pink Accent */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-pink-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+
+            {/* Carousel Dots */}
+            <div className="flex justify-center gap-2 mt-8">
+              {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentIndex(index)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    index === currentIndex
+                      ? "w-8 bg-pink-500"
+                      : "w-2 bg-pink-200 hover:bg-pink-300"
+                  }`}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
