@@ -22,20 +22,61 @@ export default function GalleryPage() {
 
   return (
     <div className="relative">
-      {/* Hero Section */}
-      <section className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-primary/10 via-pink-50 to-accent/20">
+      {/* Hero Section - Pink & White Theme */}
+      <section className="relative h-[40vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-pink-50/30 to-pink-100/40">
+        {/* Animated Pink Background Blobs */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <motion.div
+            animate={{
+              x: [0, 70, 0],
+              y: [0, 35, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 16,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-20 left-10 w-80 h-80 bg-pink-200/40 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, -50, 0],
+              y: [0, -40, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+            className="absolute bottom-20 right-10 w-96 h-96 bg-pink-300/30 rounded-full blur-3xl"
+          />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="container text-center"
+          className="relative z-10 container text-center"
         >
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-primary via-pink-600 to-primary bg-clip-text text-transparent animate-gradient">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-pink-500 via-pink-600 to-primary bg-clip-text text-transparent"
+          >
             Gallery
-          </h1>
-          <p className="text-xl text-muted-foreground">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-xl text-gray-700"
+          >
             A glimpse into our café experience
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 

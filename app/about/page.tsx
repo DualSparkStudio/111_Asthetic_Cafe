@@ -63,41 +63,84 @@ const featureHighlights = [
 export default function AboutPage() {
   return (
     <div className="relative">
-      {/* Hero Section */}
-      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 -z-10">
+      {/* Hero Section - Pink & White Theme */}
+      <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-pink-50/30 to-pink-100/40">
+        {/* Animated Pink Background Blobs */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <motion.div
+            animate={{
+              x: [0, 90, 0],
+              y: [0, 45, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-20 left-10 w-96 h-96 bg-pink-200/40 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, -70, 0],
+              y: [0, -55, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 24,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+            className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-pink-300/30 rounded-full blur-3xl"
+          />
+        </div>
+
+        {/* Background Image with Light Overlay */}
+        <div className="absolute inset-0 z-[1]">
           <div className="relative h-full w-full">
             <ImageLoader
               src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2200&q=95"
               alt="Barista preparing an artisanal coffee"
               fill
-              className="object-cover"
+              className="object-cover opacity-20"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/25" />
+            <div className="absolute inset-0 bg-gradient-to-b from-white/60 via-pink-50/40 to-white/60" />
           </div>
         </div>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="container text-center text-white space-y-6"
+          className="relative z-10 container text-center space-y-6"
         >
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.8 }}
-            className="inline-flex items-center gap-3 rounded-full border border-white/20 bg-white/10 px-6 py-2 backdrop-blur-sm text-sm uppercase tracking-[0.3em]"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="inline-flex items-center gap-3 rounded-full border-2 border-pink-300 bg-white/80 backdrop-blur-md px-6 py-2.5 text-sm uppercase tracking-[0.3em] text-pink-600 shadow-lg"
           >
             Crafted for the Senses
           </motion.div>
-          <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-pink-200 to-white bg-clip-text text-transparent">
+          <motion.h1
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-pink-500 via-pink-600 to-primary bg-clip-text text-transparent"
+          >
             About Café Luxe
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg md:text-xl text-white/80">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mx-auto max-w-2xl text-lg md:text-xl text-gray-700"
+          >
             An ultra-realistic sanctuary where design, flavor, and atmosphere converge to orchestrate unforgettable
             café moments.
-          </p>
+          </motion.p>
         </motion.div>
       </section>
 
