@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useToast } from '@/components/ui/use-toast'
-import { Calendar, Sparkles } from 'lucide-react'
+import { Calendar, Sparkles, Clock, Users, MapPin, Phone, Mail, CheckCircle2 } from 'lucide-react'
 import { ScrollAnimation } from '@/components/scroll-animation'
 import { ImageLoader } from '@/components/image-loader'
 import { motion } from 'framer-motion'
@@ -171,112 +171,218 @@ export default function BookingPage() {
       </section>
 
       <div className="container py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-          <ScrollAnimation direction="up" amount={0.3} className="lg:col-span-3">
-            <Card className="border-primary/20 bg-white/80 backdrop-blur">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-3 text-2xl font-semibold">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-                    <Calendar className="h-6 w-6 text-primary" />
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+          {/* Left Column - Form */}
+          <div className="lg:col-span-3 space-y-8">
+            <ScrollAnimation direction="up" amount={0.3}>
+              <Card className="border-2 border-pink-200 bg-white/90 backdrop-blur shadow-xl">
+                <CardHeader className="bg-gradient-to-r from-pink-50 to-white rounded-t-lg">
+                  <CardTitle className="flex items-center gap-3 text-2xl font-semibold text-pink-600">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-100 border-2 border-pink-300">
+                      <Calendar className="h-6 w-6 text-pink-600" />
+                    </div>
+                    Reservation Details
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="pt-6">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <Label htmlFor="customerName" className="text-gray-700 font-medium">Full Name *</Label>
+                        <Input
+                          id="customerName"
+                          required
+                          value={formData.customerName}
+                          onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
+                          className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="customerEmail" className="text-gray-700 font-medium">Email *</Label>
+                        <Input
+                          id="customerEmail"
+                          type="email"
+                          required
+                          value={formData.customerEmail}
+                          onChange={(e) => setFormData({ ...formData, customerEmail: e.target.value })}
+                          className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="customerPhone" className="text-gray-700 font-medium">Phone *</Label>
+                      <Input
+                        id="customerPhone"
+                        type="tel"
+                        required
+                        value={formData.customerPhone}
+                        onChange={(e) => setFormData({ ...formData, customerPhone: e.target.value })}
+                        className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div>
+                        <Label htmlFor="date" className="text-gray-700 font-medium">Date *</Label>
+                        <Input
+                          id="date"
+                          type="date"
+                          required
+                          min={today}
+                          value={formData.date}
+                          onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                          className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="time" className="text-gray-700 font-medium">Time *</Label>
+                        <Input
+                          id="time"
+                          type="time"
+                          required
+                          value={formData.time}
+                          onChange={(e) => setFormData({ ...formData, time: e.target.value })}
+                          className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                        />
+                      </div>
+                      <div>
+                        <Label htmlFor="numberOfGuests" className="text-gray-700 font-medium">Guests *</Label>
+                        <Input
+                          id="numberOfGuests"
+                          type="number"
+                          required
+                          min="1"
+                          max="20"
+                          value={formData.numberOfGuests}
+                          onChange={(e) => setFormData({ ...formData, numberOfGuests: e.target.value })}
+                          className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <Label htmlFor="specialRequests" className="text-gray-700 font-medium">Special Requests</Label>
+                      <textarea
+                        id="specialRequests"
+                        value={formData.specialRequests}
+                        onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
+                        placeholder="Lighting preferences, celebrations, dietary notes..."
+                        rows={4}
+                        className="flex min-h-[100px] w-full rounded-md border border-pink-200 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 focus-visible:border-pink-400 disabled:cursor-not-allowed disabled:opacity-50"
+                      />
+                    </div>
+
+                    <Button 
+                      type="submit" 
+                      className="w-full bg-gradient-to-r from-pink-500 via-pink-600 to-primary hover:from-pink-600 hover:via-pink-700 hover:to-primary/90 text-white shadow-lg hover:shadow-xl transition-all" 
+                      size="lg" 
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? 'Booking...' : 'Confirm Booking'}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </ScrollAnimation>
+
+            {/* Additional Information Section */}
+            <ScrollAnimation direction="up" amount={0.3} delay={0.2}>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="bg-white/80 backdrop-blur rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition-all shadow-lg"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100">
+                      <Clock className="h-5 w-5 text-pink-600" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Operating Hours</h3>
                   </div>
-                  Reservation Details
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
+                  <p className="text-sm text-gray-600">
+                    Mon - Fri: 8:00 AM - 11:00 PM<br />
+                    Sat - Sun: 9:00 AM - Midnight
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                  className="bg-white/80 backdrop-blur rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition-all shadow-lg"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100">
+                      <Users className="h-5 w-5 text-pink-600" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Group Bookings</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    Perfect for parties up to 20 guests. Contact us for larger events.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                  className="bg-white/80 backdrop-blur rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition-all shadow-lg"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100">
+                      <CheckCircle2 className="h-5 w-5 text-pink-600" />
+                    </div>
+                    <h3 className="font-semibold text-gray-900">Confirmation</h3>
+                  </div>
+                  <p className="text-sm text-gray-600">
+                    You'll receive a confirmation email within 24 hours of booking.
+                  </p>
+                </motion.div>
+              </div>
+            </ScrollAnimation>
+
+            {/* Contact Information */}
+            <ScrollAnimation direction="up" amount={0.3} delay={0.3}>
+              <Card className="border-2 border-pink-200 bg-gradient-to-br from-pink-50/50 to-white shadow-lg">
+                <CardContent className="pt-6">
+                  <h3 className="text-xl font-semibold text-pink-600 mb-4">Need Help? Contact Us</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div>
-                      <Label htmlFor="customerName">Full Name *</Label>
-                      <Input
-                        id="customerName"
-                        required
-                        value={formData.customerName}
-                        onChange={(e) => setFormData({ ...formData, customerName: e.target.value })}
-                      />
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100">
+                        <Phone className="h-5 w-5 text-pink-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">Phone</p>
+                        <p className="font-medium text-gray-900">+1 (555) 123-4567</p>
+                      </div>
                     </div>
-                    <div>
-                      <Label htmlFor="customerEmail">Email *</Label>
-                      <Input
-                        id="customerEmail"
-                        type="email"
-                        required
-                        value={formData.customerEmail}
-                        onChange={(e) => setFormData({ ...formData, customerEmail: e.target.value })}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <Label htmlFor="customerPhone">Phone *</Label>
-                    <Input
-                      id="customerPhone"
-                      type="tel"
-                      required
-                      value={formData.customerPhone}
-                      onChange={(e) => setFormData({ ...formData, customerPhone: e.target.value })}
-                    />
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <div>
-                      <Label htmlFor="date">Date *</Label>
-                      <Input
-                        id="date"
-                        type="date"
-                        required
-                        min={today}
-                        value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="time">Time *</Label>
-                      <Input
-                        id="time"
-                        type="time"
-                        required
-                        value={formData.time}
-                        onChange={(e) => setFormData({ ...formData, time: e.target.value })}
-                      />
-                    </div>
-                    <div>
-                      <Label htmlFor="numberOfGuests">Guests *</Label>
-                      <Input
-                        id="numberOfGuests"
-                        type="number"
-                        required
-                        min="1"
-                        max="20"
-                        value={formData.numberOfGuests}
-                        onChange={(e) => setFormData({ ...formData, numberOfGuests: e.target.value })}
-                      />
+                    <div className="flex items-center gap-3">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100">
+                        <Mail className="h-5 w-5 text-pink-600" />
+                      </div>
+                      <div>
+                        <p className="text-sm text-gray-600">Email</p>
+                        <p className="font-medium text-gray-900">reservations@cafeluxe.com</p>
+                      </div>
                     </div>
                   </div>
+                </CardContent>
+              </Card>
+            </ScrollAnimation>
+          </div>
 
-                  <div>
-                    <Label htmlFor="specialRequests">Special Requests</Label>
-                    <Input
-                      id="specialRequests"
-                      value={formData.specialRequests}
-                      onChange={(e) => setFormData({ ...formData, specialRequests: e.target.value })}
-                      placeholder="Lighting preferences, celebrations, dietary notes..."
-                    />
-                  </div>
-
-                  <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
-                    {isSubmitting ? 'Booking...' : 'Confirm Booking'}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
-          </ScrollAnimation>
-
+          {/* Right Column - Images */}
           <ScrollAnimation direction="left" amount={0.3} className="lg:col-span-2">
             <div className="space-y-6">
               {ambienceImages.map((image, index) => (
                 <motion.div
                   key={image}
-                  className="relative h-56 md:h-64 rounded-3xl overflow-hidden shadow-2xl"
+                  className="relative h-56 md:h-64 rounded-3xl overflow-hidden shadow-2xl border-2 border-pink-100 hover:border-pink-300 transition-all"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -284,10 +390,13 @@ export default function BookingPage() {
                   whileHover={{ scale: 1.03 }}
                 >
                   <ImageLoader src={image} alt={`Café Luxe private dining ${index + 1}`} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-white/5 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-primary">
-                    <span className="text-sm font-medium tracking-wide">Ultra-realistic ambience</span>
-                    <Sparkles className="h-4 w-4" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-pink-600/40 via-pink-500/20 to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-40" />
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                    <span className="text-sm font-medium tracking-wide text-white drop-shadow-lg">Ultra-realistic ambience</span>
+                    <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
+                      <Sparkles className="h-4 w-4 text-white" />
+                    </div>
                   </div>
                 </motion.div>
               ))}
