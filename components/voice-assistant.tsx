@@ -23,6 +23,40 @@ export function VoiceAssistant() {
   const [transcript, setTranscript] = useState('')
   const [isOpen, setIsOpen] = useState(false)
   const recognitionRef = useRef<SpeechRecognitionInstance | null>(null)
+  const toggleListeningRef = useRef<(() => void) | null>(null)
+
+  const handleVoiceCommand = (command: string) => {
+    const lowerCommand = command.toLowerCase()
+    
+    if (lowerCommand.includes('menu')) {
+      window.location.href = '/menu'
+    } else if (lowerCommand.includes('cart')) {
+      window.location.href = '/cart'
+    } else if (lowerCommand.includes('booking') || lowerCommand.includes('reservation')) {
+      window.location.href = '/booking'
+    } else if (lowerCommand.includes('home')) {
+      window.location.href = '/'
+    } else if (lowerCommand.includes('contact')) {
+      window.location.href = '/contact'
+    }
+  }
+
+  const toggleListening = () => {
+    if (!recognitionRef.current) return
+
+    if (isListening) {
+      recognitionRef.current.stop()
+      setIsListening(false)
+    } else {
+      setIsOpen(true)
+      recognitionRef.current.start()
+      setIsListening(true)
+    }
+  }
+
+  useEffect(() => {
+    toggleListeningRef.current = toggleListening
+  })
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'webkitSpeechRecognition' in window) {
@@ -62,51 +96,27 @@ export function VoiceAssistant() {
       recognitionRef.current = recognition
     }
 
+    // Listen for custom event from FloatingSocial microphone button
+    const handleToggleVoiceAssistant = () => {
+      if (toggleListeningRef.current) {
+        toggleListeningRef.current()
+      }
+    }
+
+    window.addEventListener('toggleVoiceAssistant', handleToggleVoiceAssistant)
+
     return () => {
       if (recognitionRef.current) {
         recognitionRef.current.stop()
       }
+      window.removeEventListener('toggleVoiceAssistant', handleToggleVoiceAssistant)
     }
   }, [])
 
-  const toggleListening = () => {
-    if (!recognitionRef.current) return
-
-    if (isListening) {
-      recognitionRef.current.stop()
-      setIsListening(false)
-    } else {
-      setIsOpen(true)
-      recognitionRef.current.start()
-      setIsListening(true)
-    }
-  }
-
-  const handleVoiceCommand = (command: string) => {
-    const lowerCommand = command.toLowerCase()
-    
-    if (lowerCommand.includes('menu')) {
-      window.location.href = '/menu'
-    } else if (lowerCommand.includes('cart')) {
-      window.location.href = '/cart'
-    } else if (lowerCommand.includes('booking') || lowerCommand.includes('reservation')) {
-      window.location.href = '/booking'
-    } else if (lowerCommand.includes('home')) {
-      window.location.href = '/'
-    } else if (lowerCommand.includes('contact')) {
-      window.location.href = '/contact'
-    }
-  }
-
   return (
     <>
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 z-50"
-      >
+      {/* Button is now in FloatingSocial component, so we hide this one */}
+      <div className="hidden">
         <Button
           onClick={toggleListening}
           size="lg"
@@ -121,7 +131,7 @@ export function VoiceAssistant() {
             <Mic className="h-7 w-7 text-white" strokeWidth={2.5} />
           )}
         </Button>
-      </motion.div>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
