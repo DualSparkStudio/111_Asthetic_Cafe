@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MapPin, Phone, Mail, Clock, MessageCircle, Send, Sparkles } from 'lucide-react'
 import { useToast } from '@/components/ui/use-toast'
 import { motion } from 'framer-motion'
 import { ScrollAnimation } from '@/components/scroll-animation'
@@ -117,120 +117,160 @@ export default function ContactPage() {
         </motion.div>
       </section>
 
-      <div className="container py-16 space-y-16">
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-10 items-start">
-          <ScrollAnimation direction="right" amount={0.3}>
-            <Card className="xl:col-span-1 border-primary/20 bg-white/80 backdrop-blur">
-              <CardHeader className="space-y-3">
-                <CardTitle className="text-2xl font-semibold">Visit our Ultra-Realistic Lounge</CardTitle>
-                <p className="text-sm text-muted-foreground">
-                  Nestled in the heart of the city, Café Luxe captures the glow of golden hour all day long.
+      <div className="container py-16 space-y-12">
+        {/* Contact Information Cards */}
+        <ScrollAnimation direction="fade" amount={0.2}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="bg-white/90 backdrop-blur rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition-all shadow-lg hover:shadow-xl group"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-100 border-2 border-pink-300 group-hover:bg-pink-200 transition-colors">
+                  <MapPin className="h-6 w-6 text-pink-600" />
+                </div>
+                <h3 className="font-semibold text-lg text-gray-900">Location</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed">
+                123 Aurora Avenue<br />
+                Luxe District, New York
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="bg-white/90 backdrop-blur rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition-all shadow-lg hover:shadow-xl group"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-100 border-2 border-pink-300 group-hover:bg-pink-200 transition-colors">
+                  <Phone className="h-6 w-6 text-pink-600" />
+                </div>
+                <h3 className="font-semibold text-lg text-gray-900">Phone</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed">+1 (555) 987-0034</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="bg-white/90 backdrop-blur rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition-all shadow-lg hover:shadow-xl group"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-100 border-2 border-pink-300 group-hover:bg-pink-200 transition-colors">
+                  <Mail className="h-6 w-6 text-pink-600" />
+                </div>
+                <h3 className="font-semibold text-lg text-gray-900">Email</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed">hello@cafeluxe.com</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="bg-white/90 backdrop-blur rounded-2xl p-6 border-2 border-pink-100 hover:border-pink-300 transition-all shadow-lg hover:shadow-xl group"
+            >
+              <div className="flex items-center gap-4 mb-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-pink-100 border-2 border-pink-300 group-hover:bg-pink-200 transition-colors">
+                  <Clock className="h-6 w-6 text-pink-600" />
+                </div>
+                <h3 className="font-semibold text-lg text-gray-900">Hours</h3>
+              </div>
+              <p className="text-gray-700 leading-relaxed text-sm">
+                Mon-Fri: 8AM-11PM<br />
+                Sat-Sun: 9AM-Midnight
+              </p>
+            </motion.div>
+          </div>
+        </ScrollAnimation>
+
+        {/* Main Content Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+          {/* Contact Form */}
+          <ScrollAnimation direction="up" amount={0.3} className="lg:col-span-2">
+            <Card className="border-2 border-pink-200 bg-white/90 backdrop-blur shadow-xl">
+              <CardHeader className="bg-gradient-to-r from-pink-50 to-white rounded-t-lg">
+                <CardTitle className="flex items-center gap-3 text-2xl font-semibold text-pink-600">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-pink-100 border-2 border-pink-300">
+                    <MessageCircle className="h-6 w-6 text-pink-600" />
+                  </div>
+                  Send us a Message
+                </CardTitle>
+                <p className="text-sm text-gray-600 mt-2">
+                  We'd love to hear from you! Fill out the form below and we'll get back to you as soon as possible.
                 </p>
               </CardHeader>
-              <CardContent className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-                    <MapPin className="h-5 w-5 text-primary" />
+              <CardContent className="pt-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <Label htmlFor="name" className="text-gray-700 font-medium">Name *</Label>
+                      <Input
+                        id="name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                        placeholder="Your full name"
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email" className="text-gray-700 font-medium">Email *</Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        className="border-pink-200 focus:border-pink-400 focus:ring-pink-400"
+                        placeholder="your.email@example.com"
+                      />
+                    </div>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg">Flagship Location</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      123 Aurora Avenue
-                      <br />
-                      Luxe District, New York
-                    </p>
+                    <Label htmlFor="message" className="text-gray-700 font-medium">Message *</Label>
+                    <textarea
+                      id="message"
+                      required
+                      rows={8}
+                      className="flex min-h-[150px] w-full rounded-md border border-pink-200 bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-400 focus-visible:ring-offset-2 focus-visible:border-pink-400 disabled:cursor-not-allowed disabled:opacity-50"
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      placeholder="Tell us how we can help you..."
+                    />
                   </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-                    <Phone className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Concierge</h3>
-                    <p className="text-muted-foreground leading-relaxed">+1 (555) 987-0034</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-                    <Mail className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Collaborations</h3>
-                    <p className="text-muted-foreground leading-relaxed">hello@cafeluxe.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10">
-                    <Clock className="h-5 w-5 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-lg">Golden Hour Hours</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Weekdays: 8:00 AM – 11:00 PM
-                      <br />
-                      Weekends: 9:00 AM – Midnight
-                    </p>
-                  </div>
-                </div>
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-gradient-to-r from-pink-500 via-pink-600 to-primary hover:from-pink-600 hover:via-pink-700 hover:to-primary/90 text-white shadow-lg hover:shadow-xl transition-all group"
+                    size="lg"
+                  >
+                    <span className="flex items-center justify-center gap-2">
+                      Send Message
+                      <Send className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </span>
+                  </Button>
+                </form>
               </CardContent>
             </Card>
           </ScrollAnimation>
 
-          <ScrollAnimation direction="up" amount={0.3} className="xl:col-span-2">
-            <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
-              <div className="lg:col-span-3">
-                <Card className="border-primary/10 bg-white/80 backdrop-blur">
-                  <CardHeader>
-                    <CardTitle className="text-2xl font-semibold">Send us a Message</CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                      <div>
-                        <Label htmlFor="name">Name</Label>
-                        <Input
-                          id="name"
-                          required
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="email">Email</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          required
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        />
-                      </div>
-                      <div>
-                        <Label htmlFor="message">Message</Label>
-                        <textarea
-                          id="message"
-                          required
-                          rows={6}
-                          className="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        />
-                      </div>
-                      <Button type="submit" className="w-full">
-                        Send Message
-                      </Button>
-                    </form>
-                  </CardContent>
-                </Card>
-              </div>
-
-              <div className="lg:col-span-2 space-y-6">
+          {/* Right Column - Images & Additional Info */}
+          <div className="space-y-6">
+            <ScrollAnimation direction="left" amount={0.3}>
+              <div className="space-y-6">
                 {contactImages.map((image, index) => (
                   <motion.div
                     key={image}
-                    className="relative h-48 md:h-56 rounded-3xl overflow-hidden shadow-xl"
+                    className="relative h-48 md:h-56 rounded-3xl overflow-hidden shadow-2xl border-2 border-pink-100 hover:border-pink-300 transition-all group"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -238,12 +278,44 @@ export default function ContactPage() {
                     whileHover={{ scale: 1.03 }}
                   >
                     <ImageLoader src={image} alt={`Café Luxe ambience ${index + 1}`} fill className="object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-white/5 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-pink-600/50 via-pink-500/30 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-40 group-hover:opacity-30 transition-opacity" />
+                    <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                      <span className="text-sm font-medium tracking-wide text-white drop-shadow-lg">Ultra-realistic ambience</span>
+                      <div className="bg-white/20 backdrop-blur-sm rounded-full p-2">
+                        <Sparkles className="h-4 w-4 text-white" />
+                      </div>
+                    </div>
                   </motion.div>
                 ))}
               </div>
-            </div>
-          </ScrollAnimation>
+            </ScrollAnimation>
+
+            {/* Additional Info Card */}
+            <ScrollAnimation direction="left" amount={0.3} delay={0.2}>
+              <Card className="border-2 border-pink-200 bg-gradient-to-br from-pink-50/50 to-white shadow-lg">
+                <CardContent className="pt-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-pink-100 border-2 border-pink-300">
+                        <Sparkles className="h-5 w-5 text-pink-600" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-pink-600">Visit Our Lounge</h3>
+                    </div>
+                    <p className="text-gray-700 text-sm leading-relaxed">
+                      Nestled in the heart of the city, Café Luxe captures the glow of golden hour all day long. 
+                      Experience our ultra-realistic ambiance and exceptional service.
+                    </p>
+                    <div className="pt-4 border-t border-pink-200">
+                      <p className="text-xs text-gray-600">
+                        <strong>Response Time:</strong> We typically respond within 24 hours during business days.
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </ScrollAnimation>
+          </div>
         </div>
       </div>
     </div>
