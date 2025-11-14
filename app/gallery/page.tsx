@@ -81,28 +81,38 @@ export default function GalleryPage() {
       </section>
 
       <div className="container py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
           {galleryItems.map((item, index) => (
             <ScrollAnimation
               key={item.id}
               direction="scale"
-              delay={index * 0.1}
+              delay={index * 0.05}
               amount={0.2}
             >
               <motion.div
-                whileHover={{ scale: 1.05, rotateY: 5, z: 50 }}
-                className="relative aspect-square overflow-hidden rounded-2xl cursor-pointer group shadow-lg"
+                whileHover={{ scale: 1.03, y: -5 }}
+                className="relative aspect-square overflow-hidden rounded-xl cursor-pointer group shadow-md border-2 border-pink-100 hover:border-pink-300 transition-all duration-300"
               >
               <ImageLoader
                 src={item.src}
                 alt={item.alt}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-125"
+                className="object-cover transition-transform duration-500 group-hover:scale-110"
                 priority={index < 4}
               />
-                <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <p className="text-white font-semibold text-lg">{item.alt}</p>
+                {/* Pink Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-pink-600/60 via-pink-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                
+                {/* Overlay Content */}
+                <div className="absolute inset-0 flex items-end justify-center p-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="text-center">
+                    <p className="text-white font-semibold text-sm md:text-base drop-shadow-lg">{item.alt}</p>
+                  </div>
                 </div>
+                
+                {/* Pink Accent on Hover */}
+                <div className="absolute inset-0 ring-2 ring-pink-400/0 group-hover:ring-pink-400/50 rounded-xl transition-all duration-300 pointer-events-none" />
               </motion.div>
             </ScrollAnimation>
           ))}
