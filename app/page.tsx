@@ -416,11 +416,11 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-20 bg-gradient-to-br from-primary/5 via-pink-50/50 to-accent/10">
+      {/* Features Section - Pink Accents */}
+      <section className="py-20 bg-gradient-to-br from-pink-50/50 via-white to-pink-50/30">
         <div className="container">
           <ScrollAnimation direction="fade" amount={0.2}>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
                 icon: Coffee,
@@ -451,27 +451,46 @@ export default function Home() {
                   whileHover={{ y: -10, scale: 1.02 }}
                   className="relative group"
                 >
-                <div className="relative h-64 overflow-hidden rounded-2xl mb-4 shadow-lg">
+                <div className="relative h-64 overflow-hidden rounded-2xl mb-4 shadow-xl border-2 border-pink-100 group-hover:border-pink-300 transition-all duration-300">
                   <ImageLoader
                     src={feature.image}
                     alt={feature.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/20 via-transparent to-transparent" />
+                  {/* Pink Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-pink-600/40 via-pink-500/20 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-40 group-hover:opacity-30 transition-opacity duration-300" />
+                  
+                  {/* Icon Container with Pink Background */}
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
                     <motion.div
                       animate={{ rotate: [0, 10, -10, 0] }}
                       transition={{ duration: 2, repeat: Infinity, repeatDelay: 2 }}
+                      className="relative"
                     >
-                      <feature.icon className="h-12 w-12 text-white mx-auto" />
+                      <div className="absolute inset-0 bg-pink-500/80 backdrop-blur-sm rounded-full blur-md group-hover:bg-pink-600/90 transition-colors" />
+                      <div className="relative bg-white/90 backdrop-blur-sm rounded-full p-3 border-2 border-pink-300 group-hover:border-pink-400 transition-all shadow-lg">
+                        <feature.icon className="h-8 w-8 text-pink-600 mx-auto" />
+                      </div>
                     </motion.div>
                   </div>
                 </div>
-                  <h3 className="text-xl font-semibold mb-2 text-center">{feature.title}</h3>
-                  <p className="text-muted-foreground text-center">
+                  <h3 className="text-xl font-semibold mb-2 text-center bg-gradient-to-r from-pink-600 via-pink-500 to-primary bg-clip-text text-transparent">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-700 text-center">
                     {feature.description}
                   </p>
+                  
+                  {/* Decorative Pink Line */}
+                  <motion.div
+                    initial={{ width: 0 }}
+                    whileInView={{ width: "3rem" }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.2 + 0.3 }}
+                    className="h-0.5 bg-gradient-to-r from-transparent via-pink-400 to-transparent mx-auto mt-3 rounded-full"
+                  />
                 </motion.div>
               </ScrollAnimation>
             ))}
