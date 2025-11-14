@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Coffee, Clock, MapPin, Sparkles } from 'lucide-react'
+import { ArrowRight, Coffee, Clock, MapPin, Sparkles, Star, Quote } from 'lucide-react'
 import { motion } from 'framer-motion'
 import { ImageLoader } from '@/components/image-loader'
 import { GlitchEffect } from '@/components/glitch-effect'
@@ -49,6 +49,57 @@ const signatureScenes = [
     title: "Chef's Gallery",
     description: 'An open kitchen framed by cinematic glass, showcasing culinary artistry in 3D.',
     image: 'https://images.unsplash.com/photo-1529010392921-13530992e4ab?auto=format&fit=crop&w=1400&q=95',
+  },
+];
+
+const testimonials = [
+  {
+    id: 1,
+    name: 'Sarah Mitchell',
+    role: 'Food Blogger',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=95',
+    rating: 5,
+    text: 'Café Luxe exceeded all my expectations! The ambiance is absolutely stunning, and every dish is a work of art. The rose velvet latte is to die for!',
+  },
+  {
+    id: 2,
+    name: 'James Chen',
+    role: 'Coffee Enthusiast',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=95',
+    rating: 5,
+    text: 'As a coffee connoisseur, I can confidently say Café Luxe serves some of the finest coffee I\'ve ever tasted. The baristas are true artists!',
+  },
+  {
+    id: 3,
+    name: 'Emily Rodriguez',
+    role: 'Local Resident',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=200&q=95',
+    rating: 5,
+    text: 'This has become my go-to spot for weekend brunches. The service is impeccable, and the atmosphere makes every visit feel special.',
+  },
+  {
+    id: 4,
+    name: 'Michael Thompson',
+    role: 'Business Professional',
+    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=95',
+    rating: 5,
+    text: 'Perfect place for business meetings. The quiet ambiance, excellent coffee, and delicious pastries make it ideal for productive conversations.',
+  },
+  {
+    id: 5,
+    name: 'Olivia Parker',
+    role: 'Photographer',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=95',
+    rating: 5,
+    text: 'Every corner of Café Luxe is Instagram-worthy! The design is breathtaking, and the food presentation is absolutely beautiful. Highly recommend!',
+  },
+  {
+    id: 6,
+    name: 'David Kim',
+    role: 'Chef',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=200&q=95',
+    rating: 5,
+    text: 'As a chef, I appreciate the attention to detail in every dish. The flavors are perfectly balanced, and the presentation is exceptional. Truly a culinary gem!',
   },
 ];
 
@@ -433,8 +484,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Signature Scenes */}
-      <section className="py-20 bg-gradient-to-b from-background to-primary/5">
+      {/* Signature Scenes - Redesigned */}
+      <section className="py-20 bg-gradient-to-br from-white via-pink-50/30 to-pink-100/20">
         <div className="container space-y-12">
           <ScrollAnimation direction="fade" amount={0.2}>
             <div className="text-center max-w-2xl mx-auto space-y-4">
@@ -443,34 +494,256 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4 }}
-                className="inline-flex items-center gap-2 rounded-full border border-primary/20 px-5 py-2 text-xs uppercase tracking-[0.35em] text-primary"
+                className="inline-flex items-center gap-2 rounded-full border-2 border-pink-300 bg-white/80 backdrop-blur-md px-5 py-2 text-xs uppercase tracking-[0.35em] text-pink-600 shadow-lg"
               >
-                <Sparkles className="h-4 w-4" />
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                >
+                  <Sparkles className="h-4 w-4" />
+                </motion.div>
                 Signature Scenes
               </motion.span>
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-primary via-pink-600 to-primary bg-clip-text text-transparent">
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 via-pink-600 to-primary bg-clip-text text-transparent"
+              >
                 Moments that Feel Ultra-Real
-              </h2>
-              <p className="text-muted-foreground">
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-gray-700"
+              >
                 Step inside curated worlds where light, texture, and craft align to transform a café visit into a cinematic experience.
-              </p>
+              </motion.p>
             </div>
           </ScrollAnimation>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 xl:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {signatureScenes.map((scene, index) => (
-              <ScrollAnimation key={scene.title} direction="up" delay={index * 0.1} amount={0.25}>
+              <ScrollAnimation key={scene.title} direction="up" delay={index * 0.15} amount={0.25}>
                 <motion.div
-                  className="group relative h-80 md:h-96 overflow-hidden rounded-3xl shadow-2xl"
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ duration: 0.4 }}
+                  className="group relative h-80 md:h-96 overflow-hidden rounded-3xl shadow-xl border-4 border-white/80 bg-white"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ 
+                    scale: 1.03,
+                    y: -8,
+                    boxShadow: "0 25px 50px -12px rgba(236, 72, 153, 0.4)"
+                  }}
                 >
-                  <ImageLoader src={scene.image} alt={scene.title} fill className="object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-white/25 via-white/5 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 space-y-2 text-white">
-                    <h3 className="text-2xl font-semibold">{scene.title}</h3>
-                    <p className="text-sm text-white/80">{scene.description}</p>
+                  {/* Image */}
+                  <div className="absolute inset-0">
+                    <ImageLoader 
+                      src={scene.image} 
+                      alt={scene.title} 
+                      fill 
+                      className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                    />
+                    {/* Pink Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-pink-600/80 via-pink-500/40 to-transparent opacity-60 group-hover:opacity-70 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-40 group-hover:opacity-30 transition-opacity duration-300" />
                   </div>
+
+                  {/* Content Card */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 md:p-8">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+                      className="relative z-10"
+                    >
+                      {/* Badge */}
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
+                        className="inline-block mb-3"
+                      >
+                        <span className="inline-flex items-center gap-1.5 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-pink-600 shadow-md">
+                          <div className="w-1.5 h-1.5 bg-pink-500 rounded-full animate-pulse" />
+                          Premium Experience
+                        </span>
+                      </motion.div>
+
+                      {/* Title */}
+                      <motion.h3
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.5 }}
+                        className="text-2xl md:text-3xl font-bold text-white mb-2 drop-shadow-lg"
+                      >
+                        {scene.title}
+                      </motion.h3>
+
+                      {/* Description */}
+                      <motion.p
+                        initial={{ opacity: 0, y: 10 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: index * 0.1 + 0.6 }}
+                        className="text-sm md:text-base text-white/95 leading-relaxed max-w-md drop-shadow-md"
+                      >
+                        {scene.description}
+                      </motion.p>
+
+                      {/* Decorative Line */}
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "4rem" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: index * 0.1 + 0.7 }}
+                        className="h-1 bg-gradient-to-r from-pink-300 to-white rounded-full mt-4"
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Hover Effect - Pink Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 to-pink-500/0 group-hover:from-pink-500/10 group-hover:to-pink-500/5 transition-all duration-500 pointer-events-none" />
+                </motion.div>
+              </ScrollAnimation>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gradient-to-br from-pink-50/50 via-white to-pink-50/30">
+        <div className="container space-y-12">
+          <ScrollAnimation direction="fade" amount={0.2}>
+            <div className="text-center max-w-2xl mx-auto space-y-4">
+              <motion.span
+                initial={{ opacity: 0, y: 8 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4 }}
+                className="inline-flex items-center gap-2 rounded-full border-2 border-pink-300 bg-white/80 backdrop-blur-md px-5 py-2 text-xs uppercase tracking-[0.35em] text-pink-600 shadow-lg"
+              >
+                <motion.div
+                  animate={{ rotate: [0, 360] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                >
+                  <Sparkles className="h-4 w-4" />
+                </motion.div>
+                Customer Stories
+              </motion.span>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-pink-500 via-pink-600 to-primary bg-clip-text text-transparent"
+              >
+                What Our Guests Say
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-gray-700"
+              >
+                Discover why Café Luxe has become a beloved destination for coffee lovers and food enthusiasts alike.
+              </motion.p>
+            </div>
+          </ScrollAnimation>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {testimonials.map((testimonial, index) => (
+              <ScrollAnimation key={testimonial.id} direction="up" delay={index * 0.1} amount={0.25}>
+                <motion.div
+                  className="group relative bg-white rounded-3xl p-6 md:p-8 shadow-lg border-2 border-pink-100 hover:border-pink-300 transition-all duration-300"
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ 
+                    y: -8,
+                    boxShadow: "0 20px 40px -12px rgba(236, 72, 153, 0.3)"
+                  }}
+                >
+                  {/* Quote Icon */}
+                  <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+                    <Quote className="h-16 w-16 text-pink-500" />
+                  </div>
+
+                  {/* Rating Stars */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, scale: 0 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.1 + i * 0.1 }}
+                      >
+                        <Star className="h-5 w-5 fill-pink-500 text-pink-500" />
+                      </motion.div>
+                    ))}
+                  </div>
+
+                  {/* Testimonial Text */}
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+                    className="text-gray-700 mb-6 leading-relaxed relative z-10"
+                  >
+                    "{testimonial.text}"
+                  </motion.p>
+
+                  {/* Author Info */}
+                  <div className="flex items-center gap-4 pt-4 border-t border-pink-100">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 + 0.3 }}
+                      className="relative h-12 w-12 rounded-full overflow-hidden ring-2 ring-pink-200 group-hover:ring-pink-400 transition-all"
+                    >
+                      <ImageLoader
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </motion.div>
+                    <div>
+                      <motion.h4
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 + 0.4 }}
+                        className="font-semibold text-gray-900"
+                      >
+                        {testimonial.name}
+                      </motion.h4>
+                      <motion.p
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: index * 0.1 + 0.5 }}
+                        className="text-sm text-pink-600"
+                      >
+                        {testimonial.role}
+                      </motion.p>
+                    </div>
+                  </div>
+
+                  {/* Decorative Pink Accent */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-pink-300 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </motion.div>
               </ScrollAnimation>
             ))}
