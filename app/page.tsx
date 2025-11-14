@@ -55,155 +55,258 @@ const signatureScenes = [
 export default function Home() {
   return (
     <div className="relative">
-      {/* Hero Section - Redesigned */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-        {/* Animated Background Pattern */}
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(236,72,153,0.1),transparent_50%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(139,92,246,0.1),transparent_50%)]" />
+      {/* Hero Section - Pink & White Theme */}
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-white via-pink-50/30 to-pink-100/40">
+        {/* Animated Pink Background Blobs */}
+        <div className="absolute inset-0 z-0 overflow-hidden">
+          <motion.div
+            animate={{
+              x: [0, 100, 0],
+              y: [0, 50, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="absolute top-20 left-10 w-96 h-96 bg-pink-200/40 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, -80, 0],
+              y: [0, -60, 0],
+              scale: [1, 1.3, 1],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5,
+            }}
+            className="absolute bottom-20 right-10 w-[500px] h-[500px] bg-pink-300/30 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              x: [0, 60, 0],
+              y: [0, -40, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1,
+            }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl"
+          />
         </div>
 
-        {/* Main Background Image with Parallax */}
-        <div className="absolute inset-0 z-[1]">
-          <ParallaxScroll speed={0.2}>
-            <div className="relative w-full h-full">
-              <ImageLoader
-                src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2200&q=95"
-                alt="Immersive café interior bathed in warm light"
-                fill
-                className="object-cover opacity-30"
-                priority
-              />
-            </div>
-          </ParallaxScroll>
+        {/* Floating Decorative Elements */}
+        <div className="absolute inset-0 z-[1] overflow-hidden pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 100 }}
+              animate={{
+                opacity: [0.3, 0.6, 0.3],
+                y: [0, -30, 0],
+                x: [0, Math.sin(i) * 20, 0],
+              }}
+              transition={{
+                duration: 4 + i,
+                repeat: Infinity,
+                delay: i * 0.5,
+                ease: "easeInOut",
+              }}
+              className="absolute"
+              style={{
+                left: `${15 + i * 15}%`,
+                top: `${20 + (i % 3) * 30}%`,
+              }}
+            >
+              <div className="w-2 h-2 bg-pink-400/40 rounded-full" />
+            </motion.div>
+          ))}
         </div>
-        
-        {/* Elegant Overlay Gradient */}
-        <div className="absolute inset-0 z-[2] bg-gradient-to-b from-black/60 via-black/40 to-black/60" />
-        
-        {/* Redesigned Floating Images - More Elegant */}
-        <div className="absolute inset-0 z-[3] overflow-hidden pointer-events-none hidden md:block">
+
+        {/* Floating Images with Enhanced Animations */}
+        <div className="absolute inset-0 z-[2] overflow-hidden pointer-events-none hidden lg:block">
           {/* Left Image - Café Interior */}
-          <ScrollAnimation direction="fade" delay={0.4} amount={0.1}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.3 }}
-              className="absolute top-32 left-8 lg:left-16 w-56 h-72 lg:w-72 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform -rotate-6 border-4 border-white/10 backdrop-blur-sm"
-            >
-              <ImageLoader 
-                src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=95" 
-                alt="Luxe café barista counter" 
-                fill 
-                className="object-cover" 
-                priority 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            </motion.div>
-          </ScrollAnimation>
+          <motion.div
+            initial={{ opacity: 0, x: -100, rotate: -15 }}
+            animate={{ 
+              opacity: 1, 
+              x: 0, 
+              rotate: -6,
+              y: [0, -20, 0],
+            }}
+            transition={{ 
+              duration: 1.2, 
+              delay: 0.4,
+              y: {
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+            }}
+            className="absolute top-24 left-8 xl:left-16 w-64 h-80 xl:w-80 xl:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/80 backdrop-blur-sm"
+          >
+            <ImageLoader 
+              src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=900&q=95" 
+              alt="Luxe café barista counter" 
+              fill 
+              className="object-cover" 
+              priority 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-pink-500/20 via-transparent to-transparent" />
+          </motion.div>
 
-          {/* Right Image - Pastry Selection */}
-          <ScrollAnimation direction="fade" delay={0.6} amount={0.1}>
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              className="absolute bottom-32 right-8 lg:right-16 w-56 h-72 lg:w-72 lg:h-96 rounded-3xl overflow-hidden shadow-2xl transform rotate-6 border-4 border-white/10 backdrop-blur-sm"
-            >
-              <ImageLoader 
-                src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=95" 
-                alt="Curated pastry selection" 
-                fill 
-                className="object-cover" 
-                priority 
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-            </motion.div>
-          </ScrollAnimation>
+          {/* Right Image - Food Bowl */}
+          <motion.div
+            initial={{ opacity: 0, x: 100, rotate: 15 }}
+            animate={{ 
+              opacity: 1, 
+              x: 0, 
+              rotate: 6,
+              y: [0, 20, 0],
+            }}
+            transition={{ 
+              duration: 1.2, 
+              delay: 0.6,
+              y: {
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 0.5,
+              }
+            }}
+            className="absolute bottom-24 right-8 xl:right-16 w-64 h-80 xl:w-80 xl:h-[500px] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/80 backdrop-blur-sm"
+          >
+            <ImageLoader 
+              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=95" 
+              alt="Curated food selection" 
+              fill 
+              className="object-cover" 
+              priority 
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-pink-500/20 via-transparent to-transparent" />
+          </motion.div>
         </div>
         
-        {/* Main Content - Enhanced Design */}
+        {/* Main Content */}
         <div className="relative z-10 container text-center px-4 py-20">
-          <ScrollAnimation direction="fade" delay={0.2} amount={0.2}>
+          {/* Premium Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
+            className="inline-flex items-center gap-2 rounded-full border-2 border-pink-300 bg-white/80 backdrop-blur-md px-6 py-2.5 mb-8 shadow-lg"
+          >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-6 py-2 mb-8 backdrop-blur-sm"
+              animate={{ rotate: [0, 360] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
             >
-              <Sparkles className="h-4 w-4 text-pink-400" />
-              <span className="text-sm font-medium text-pink-300 uppercase tracking-wider">Premium Experience</span>
+              <Sparkles className="h-4 w-4 text-pink-500" />
             </motion.div>
-          </ScrollAnimation>
+            <span className="text-sm font-semibold text-pink-600 uppercase tracking-wider">Premium Experience</span>
+          </motion.div>
 
-          <ScrollAnimation direction="fade" delay={0.4} amount={0.2}>
+          {/* Main Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             <GlitchEffect>
               <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-6xl md:text-8xl lg:text-9xl font-bold mb-8 bg-gradient-to-r from-pink-400 via-pink-500 to-purple-500 bg-clip-text text-transparent leading-tight"
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-bold mb-6 leading-tight"
               >
-                Welcome to
-                <br />
-                <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-pink-400 bg-clip-text text-transparent">
+                <motion.span
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="block bg-gradient-to-r from-pink-500 via-pink-600 to-primary bg-clip-text text-transparent"
+                >
+                  Welcome to
+                </motion.span>
+                <motion.span
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="block bg-gradient-to-r from-primary via-pink-500 to-pink-400 bg-clip-text text-transparent mt-2"
+                >
                   Café Luxe
-                </span>
+                </motion.span>
               </motion.h1>
             </GlitchEffect>
-          </ScrollAnimation>
+          </motion.div>
           
-          <ScrollAnimation direction="up" delay={0.6} amount={0.2}>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl md:text-2xl lg:text-3xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
-            >
-              Experience the finest café dining with our curated menu and exceptional service
-            </motion.p>
-          </ScrollAnimation>
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed font-light"
+          >
+            Experience the finest café dining with our curated menu and exceptional service
+          </motion.p>
           
-          <ScrollAnimation direction="up" delay={0.8} amount={0.2}>
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center items-center"
+          >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
             >
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link href="/menu">
-                  <Button 
-                    size="lg" 
-                    className="text-lg px-10 py-6 bg-gradient-to-r from-pink-500 via-pink-600 to-purple-600 hover:from-pink-600 hover:via-pink-700 hover:to-purple-700 text-white shadow-2xl hover:shadow-pink-500/50 transition-all rounded-full border-2 border-pink-400/30"
-                  >
+              <Link href="/menu">
+                <Button 
+                  size="lg" 
+                  className="text-lg px-8 md:px-10 py-6 bg-gradient-to-r from-pink-500 via-pink-600 to-primary hover:from-pink-600 hover:via-pink-700 hover:to-primary/90 text-white shadow-xl hover:shadow-2xl hover:shadow-pink-500/50 transition-all rounded-full border-2 border-pink-400/30 group"
+                >
+                  <span className="flex items-center">
                     View Menu
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Link href="/booking">
-                  <Button 
-                    size="lg" 
-                    variant="outline" 
-                    className="text-lg px-10 py-6 border-2 border-white/30 hover:bg-white/10 hover:border-white/50 text-white backdrop-blur-sm transition-all rounded-full bg-white/5"
-                  >
-                    Book a Table
-                  </Button>
-                </Link>
-              </motion.div>
+                    <motion.span
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 1.5, repeat: Infinity }}
+                    >
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                    </motion.span>
+                  </span>
+                </Button>
+              </Link>
             </motion.div>
-          </ScrollAnimation>
+            <motion.div
+              whileHover={{ scale: 1.05, y: -3 }}
+              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 1 }}
+            >
+              <Link href="/booking">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="text-lg px-8 md:px-10 py-6 border-2 border-pink-400 hover:bg-pink-50 hover:border-pink-500 text-pink-600 backdrop-blur-sm transition-all rounded-full bg-white/80 shadow-lg hover:shadow-xl"
+                >
+                  Book a Table
+                </Button>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Animated Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -213,12 +316,12 @@ export default function Home() {
           <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center p-2"
+            className="w-6 h-10 border-2 border-pink-400/50 rounded-full flex justify-center p-2 bg-white/50 backdrop-blur-sm"
           >
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-white/50 rounded-full"
+              className="w-1.5 h-1.5 bg-pink-500 rounded-full"
             />
           </motion.div>
         </motion.div>
